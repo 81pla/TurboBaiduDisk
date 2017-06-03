@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TurboBaiduDisk", "TurboBaiduDisk\TurboBaiduDisk.csproj", "{4279C084-8FF2-4E30-B5B2-688AC9C5FEBB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APIClient", "APIClient\APIClient.csproj", "{17DBF47C-0433-4128-A1D2-BBBC420CB04B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TurboEngine", "TurboEngine\TurboEngine.csproj", "{A8532D89-BB9E-4CF2-B1CE-79BF4D18A9DE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4279C084-8FF2-4E30-B5B2-688AC9C5FEBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4279C084-8FF2-4E30-B5B2-688AC9C5FEBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4279C084-8FF2-4E30-B5B2-688AC9C5FEBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4279C084-8FF2-4E30-B5B2-688AC9C5FEBB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{17DBF47C-0433-4128-A1D2-BBBC420CB04B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17DBF47C-0433-4128-A1D2-BBBC420CB04B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17DBF47C-0433-4128-A1D2-BBBC420CB04B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17DBF47C-0433-4128-A1D2-BBBC420CB04B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8532D89-BB9E-4CF2-B1CE-79BF4D18A9DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8532D89-BB9E-4CF2-B1CE-79BF4D18A9DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8532D89-BB9E-4CF2-B1CE-79BF4D18A9DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8532D89-BB9E-4CF2-B1CE-79BF4D18A9DE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
