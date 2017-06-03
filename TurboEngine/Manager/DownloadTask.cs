@@ -12,7 +12,7 @@ namespace TurboEngine.Manager
     public class DownloadTask : Task
     {
         public List<string> Mirrors { get; set; }
-        private Engine engine;
+        private DownloadEngine engine;
         public DownloadTask()
         {
 
@@ -37,7 +37,7 @@ namespace TurboEngine.Manager
                 return;
             if (Mirrors == null)
                 GetMirrors();
-            engine = new Engine(Mirrors);
+            engine = new DownloadEngine(Mirrors);
             engine.FilePath = ToPath.Remove(ToPath.LastIndexOf('\\'));
             engine.Start();
         }

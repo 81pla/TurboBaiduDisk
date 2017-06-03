@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace TurboEngine.Core
 {
-    public class Engine
+    public class DownloadEngine
     {
         #region Events
         public event Action ProgressRefresh;
@@ -45,11 +45,11 @@ namespace TurboEngine.Core
         #endregion
 
         #region Public methods
-        public Engine()
+        public DownloadEngine()
         {
 
         }
-        public Engine(List<string> mirrors)
+        public DownloadEngine(List<string> mirrors)
         {
             Mirrors = mirrors;
         }

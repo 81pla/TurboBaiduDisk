@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\UploadEngine.cs" />
     <Compile Include="Manager\DownloadManager.cs" />
     <Compile Include="Manager\Task.cs" />
     <Compile Include="Manager\DownloadTask.cs" />
@@ -48,7 +49,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Core\CacheManager.cs" />
     <Compile Include="Core\ChunkManager.cs" />
-    <Compile Include="Core\Engine.cs" />
+    <Compile Include="Core\DownloadEngine.cs" />
     <Compile Include="Core\StateMonitor.cs" />
   </ItemGroup>
   <ItemGroup>

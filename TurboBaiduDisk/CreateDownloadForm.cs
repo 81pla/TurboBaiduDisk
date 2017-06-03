@@ -16,7 +16,7 @@ namespace TurboBaiduDisk
 {
     public partial class CreateDownloadForm : Form
     {
-        Engine engine;
+        DownloadEngine engine;
         List<string> mirrors = new List<string>();
         long filelength = 0;
         public CreateDownloadForm(string path)
@@ -55,11 +55,11 @@ namespace TurboBaiduDisk
             }
             txtList.AppendText($"Mirrors Count: {mirrors.Count}\r\n");
             string filename = "";
-            Engine.LoadBasicInfo(mirrors[1], out filename, out filelength);
+            DownloadEngine.LoadBasicInfo(mirrors[1], out filename, out filelength);
             txtFilename.Text = filename;
             txtSize.Text = GetSizeString(filelength);
 
-            engine = new Engine(mirrors);
+            engine = new DownloadEngine(mirrors);
             engine.FileName = filename;
             engine.FileLength = filelength;
 
