@@ -25,7 +25,7 @@ namespace TurboEngine.Core
         public string FileName { get; set; }
         public EngineState State { get; private set; } = EngineState.Stopped;
         public long DownloadedSize { get { return stateMonitor.DownloadSize; } }
-        public double Rate { get { return stateMonitor.Rate; } }
+        public double Rate { get { return stateMonitor.Rate > 1 ? 1 : stateMonitor.Rate; } }
         public double Speed { get { return stateMonitor.Speed; } }
         public int RunningWorkers { get { return workersRunning; } }
         #endregion
@@ -180,7 +180,6 @@ namespace TurboEngine.Core
             {
                 DownloadError($"主线程错误：{ex.Message}");
                 SetState(EngineState.Error);
-                throw;
             }
         }
         private void DownloadWorker(object mirror)
@@ -223,7 +222,6 @@ namespace TurboEngine.Core
             {
                 DownloadError($"工作线程错误：{ex.Message}");
                 SetState(EngineState.Error);
-                throw;
             }
         }
 
