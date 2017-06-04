@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace TurboBaiduDisk
 {
-    public partial class DownloadDialog : Form
+    public partial class SettingForm : Form
     {
-        public DownloadDialog()
+        public SettingForm()
         {
             InitializeComponent();
         }

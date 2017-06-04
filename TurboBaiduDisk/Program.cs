@@ -1,7 +1,9 @@
 ﻿using APIClient;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Text;
 using System.Windows.Forms;
 
 namespace TurboBaiduDisk
@@ -18,6 +20,9 @@ namespace TurboBaiduDisk
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Control.CheckForIllegalCrossThreadCalls = false;
+
+            Application.ThreadException += Application_ThreadException;
+            AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
 
             Config = GlobalConfig.Load();
 
@@ -40,6 +45,29 @@ namespace TurboBaiduDisk
                 Run();
             }
         }
+
+        private static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
+        {
+            ExceptionHandler(e.ExceptionObject as Exception);
+        }
+
+        private static void Application_ThreadException(object sender, System.Threading.ThreadExceptionEventArgs e)
+        {
+            ExceptionHandler(e.Exception);
+        }
+
+        private static void ExceptionHandler(Exception ex)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine($"Time: {DateTime.Now}");
+            sb.AppendLine($"Exception:{ex.ToString()}");
+            string filename = $"crush_{DateTime.Now:yyyyMMdd_hhmmss}.txt";
+            File.WriteAllText(filename, sb.ToString());
+            MessageBox.Show($"一个未知的严重错误在运行时出现。强烈建议您把下面的错误信息通过Issues或其他方式报告给作者：{sb.ToString()}\r\n 错误信息已保存到程序目录下。如果下载正在运行，数据可能会丢失。", "Crush", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            System.Diagnostics.Process.Start("explorer.exe", $"/select,\"{Path.Combine(Environment.CurrentDirectory, filename)}\"");
+            Environment.Exit(0);
+        }
+
         static void Run()
         {
             Application.Run(new MainForm());

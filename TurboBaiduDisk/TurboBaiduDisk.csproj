@@ -71,12 +71,6 @@
     <Compile Include="CreateDownloadForm.Designer.cs">
       <DependentUpon>CreateDownloadForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="DownloadDialog.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="DownloadDialog.Designer.cs">
-      <DependentUpon>DownloadDialog.cs</DependentUpon>
-    </Compile>
     <Compile Include="GlobalConfig.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -86,6 +80,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SettingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SettingForm.Designer.cs">
+      <DependentUpon>SettingForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ShareForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -94,9 +94,6 @@
     </Compile>
     <EmbeddedResource Include="CreateDownloadForm.resx">
       <DependentUpon>CreateDownloadForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DownloadDialog.resx">
-      <DependentUpon>DownloadDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -111,6 +108,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="SettingForm.resx">
+      <DependentUpon>SettingForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ShareForm.resx">
       <DependentUpon>ShareForm.cs</DependentUpon>
     </EmbeddedResource>

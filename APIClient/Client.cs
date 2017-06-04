@@ -16,6 +16,7 @@ namespace APIClient
         #region Fields
         public static ClientCredential Authentication { get; set; }
         #endregion
+
         #region Methods
         const string MainServer = "http://pan.baidu.com";
         const string PCSServer = "http://d.pcs.baidu.com";
@@ -323,6 +324,7 @@ namespace APIClient
             }
         }
         #endregion
+
     }
     public class ClientCredential
     {
