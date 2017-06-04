@@ -9,7 +9,6 @@ namespace TurboEngine.Core
 {
     class StateMonitor
     {
-        public event Action StateRefresh;
         public long DownloadSize { get { return downloadSize; } }
         public double Rate { get { return (double)downloadSize / fileLength; } }
         public double Speed {
@@ -55,7 +54,6 @@ namespace TurboEngine.Core
         public void AddBytes(long count)
         {
             Interlocked.Add(ref downloadSize, count);
-            StateRefresh?.Invoke();
         }
         public void ResumeBytes(long count)
         {

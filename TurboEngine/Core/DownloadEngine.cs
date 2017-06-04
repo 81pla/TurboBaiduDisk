@@ -14,7 +14,7 @@ namespace TurboEngine.Core
     public class DownloadEngine
     {
         #region Events
-        public event Action ProgressRefresh;
+        public event EventHandler StateChanged;
         #endregion
 
         #region Public fields
@@ -150,19 +150,16 @@ namespace TurboEngine.Core
         private void StartDownload()
         {
             ServicePointManager.DefaultConnectionLimit = 100;
+
             chunkManager = new ChunkManager(FileLength, Path.Combine(FilePath, FileName) + ".tep");
             cacheManager = new CacheManager(Path.Combine(FilePath, FileName));
             stateMonitor = new StateMonitor(FileLength);
 
-            stateMonitor.StateRefresh += new Action(() =>
-            {
-                ProgressRefresh?.BeginInvoke(null, null);
-            });
-
-            stateMonitor.ResumeBytes(chunkManager.TepSavedDownloadedSize);
+            stateMonitor.ResumeBytes(chunkManager.TepSavedDownloadedSize);  //continue progress
             SetState(EngineState.Running);
 
-            for (int i = 1; i <= WorkersPerMirror; i++)
+            //start workers
+            while (tasks.Count < MaxWorkers)
             {
                 foreach (string mirror in Mirrors)
                 {
@@ -172,7 +169,8 @@ namespace TurboEngine.Core
                     }
                 }
             }
-            Task.WaitAll(tasks.ToArray());
+
+            Task.WaitAll(tasks.ToArray());  //wait for exit
             if (!requestedStopping)
                 Finish();
         }
@@ -204,7 +202,7 @@ namespace TurboEngine.Core
                 }
                 catch (Exception)
                 {
-                    if(chunkManager.GiveUpChunk(chunk, mirror as string) && workersRunning > 2)
+                    if(chunkManager.GiveUpChunk(chunk, mirror as string) && workersRunning > MinWorkers)
                         break;
                 }
             }
@@ -214,7 +212,7 @@ namespace TurboEngine.Core
         private void SetState(EngineState state)
         {
             State = state;
-            ProgressRefresh?.Invoke();
+            StateChanged?.Invoke(null, null);
         }
         private void Finish()
         {

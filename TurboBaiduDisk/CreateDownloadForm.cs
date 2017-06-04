@@ -107,31 +107,22 @@ namespace TurboBaiduDisk
                     MessageBox.Show("请选择下载目录。");
                     return;
                 }
-                
-                engine.FilePath = Program.Config.DefaultDownloadPath;
-                engine.Start();
-                engine.ProgressRefresh += new Action(() =>
+
+                Task.Run(new Action(() =>
                 {
-                    switch (engine.State)
+                    engine.FilePath = Program.Config.DefaultDownloadPath;
+                    engine.Start();
+                    while (engine.State != EngineState.Running)
                     {
-                        case EngineState.Starting:
-                            txtList.Text = "Connecting...";
-                            break;
-                        case EngineState.Running:
-                            txtList.Text = $"<Downloading>\r\nThreads: {engine.RunningWorkers} \r\n{engine.Rate:#.#%} finished\r\nSpeed:{GetSizeString((long)engine.Speed)}/s\r\nDownloaded: {GetSizeString(engine.DownloadedSize)}/{GetSizeString(engine.FileLength)}\r\nTime Remaining: {(engine.Speed == 0? TimeSpan.MaxValue : TimeSpan.FromSeconds((engine.FileLength - engine.DownloadedSize) / engine.Speed)):c}";
-                            break;
-                        case EngineState.Finished:
-                            txtList.Text = $"Finished.";
-                            break;
-                        case EngineState.Stopping:
-                            txtList.Text = $"Stopping...";
-                            break;
-                        case EngineState.Stopped:
-                            txtList.Text = $"Stopped.";
-                            break;
+                        txtList.Text = "Connecting...";
                     }
-                });
-                
+                    while (engine.State == EngineState.Running)
+                    {
+                        txtList.Text = $"<Downloading>\r\nThreads: {engine.RunningWorkers} \r\n{engine.Rate:#.#%} finished\r\nSpeed:{GetSizeString((long)engine.Speed)}/s\r\nDownloaded: {GetSizeString(engine.DownloadedSize)}/{GetSizeString(engine.FileLength)}\r\nTime Remaining: {(engine.Speed == 0 ? TimeSpan.MaxValue : TimeSpan.FromSeconds((engine.FileLength - engine.DownloadedSize) / engine.Speed)):c}";
+                    }
+                    txtList.Text = $"Stopped.";
+                }));
+
                 btnDownloadNow.Text = "停止下载";
             }
             else
