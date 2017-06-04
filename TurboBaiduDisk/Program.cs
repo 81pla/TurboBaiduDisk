@@ -20,9 +20,10 @@ namespace TurboBaiduDisk
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Control.CheckForIllegalCrossThreadCalls = false;
-
+#if !DEBUG
             Application.ThreadException += Application_ThreadException;
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
+#endif
 
             Config = GlobalConfig.Load();
 
@@ -60,7 +61,7 @@ namespace TurboBaiduDisk
         {
             StringBuilder sb = new StringBuilder();
             sb.AppendLine($"Time: {DateTime.Now}");
-            sb.AppendLine($"Exception:{ex.ToString()}");
+            sb.AppendLine($"Exception:\r\n{ex.ToString()}");
             string filename = $"crush_{DateTime.Now:yyyyMMdd_hhmmss}.txt";
             File.WriteAllText(filename, sb.ToString());
             MessageBox.Show($"一个未知的严重错误在运行时出现。强烈建议您把下面的错误信息通过Issues或其他方式报告给作者：{sb.ToString()}\r\n 错误信息已保存到程序目录下。如果下载正在运行，数据可能会丢失。", "Crush", MessageBoxButtons.OK, MessageBoxIcon.Error);

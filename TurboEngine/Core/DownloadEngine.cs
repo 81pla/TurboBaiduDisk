@@ -15,6 +15,7 @@ namespace TurboEngine.Core
     {
         #region Events
         public event EventHandler StateChanged;
+        public event Action<string> DownloadError;
         #endregion
 
         #region Public fields
@@ -78,12 +79,11 @@ namespace TurboEngine.Core
                     Task.WaitAll(tasks.ToArray());
                     SetState(EngineState.Stopped);
                 }));
-                
             }
         }
         public void Stop()
         {
-            if (State == EngineState.Running)
+            if (State == EngineState.Running || State == EngineState.Error)
             {
                 Task.Run(new Action(() =>
                 {
@@ -149,64 +149,82 @@ namespace TurboEngine.Core
         #region Private methods
         private void StartDownload()
         {
-            ServicePointManager.DefaultConnectionLimit = 100;
-
-            chunkManager = new ChunkManager(FileLength, Path.Combine(FilePath, FileName) + ".tep");
-            cacheManager = new CacheManager(Path.Combine(FilePath, FileName));
-            stateMonitor = new StateMonitor(FileLength);
-
-            stateMonitor.ResumeBytes(chunkManager.TepSavedDownloadedSize);  //continue progress
-            SetState(EngineState.Running);
-
-            //start workers
-            while (tasks.Count < MaxWorkers)
+            try
             {
-                foreach (string mirror in Mirrors)
+                ServicePointManager.DefaultConnectionLimit = 100;
+
+                chunkManager = new ChunkManager(FileLength, Path.Combine(FilePath, FileName) + ".tep");
+                cacheManager = new CacheManager(Path.Combine(FilePath, FileName));
+                stateMonitor = new StateMonitor(FileLength);
+
+                stateMonitor.ResumeBytes(chunkManager.TepSavedDownloadedSize);  //continue progress
+                SetState(EngineState.Running);
+
+                //start workers
+                while (tasks.Count < MaxWorkers)
                 {
-                    if (tasks.Count < MaxWorkers)
+                    foreach (string mirror in Mirrors)
                     {
-                        tasks.Add(Task.Factory.StartNew(DownloadWorker, mirror));
+                        if (tasks.Count < MaxWorkers)
+                        {
+                            tasks.Add(Task.Factory.StartNew(DownloadWorker, mirror));
+                        }
                     }
                 }
-            }
 
-            Task.WaitAll(tasks.ToArray());  //wait for exit
-            if (!requestedStopping)
-                Finish();
+                Task.WaitAll(tasks.ToArray());  //wait for exit
+                if (!requestedStopping)
+                    Finish();
+            }
+            catch (Exception ex)
+            {
+                DownloadError($"主线程错误：{ex.Message}");
+                SetState(EngineState.Error);
+                throw;
+            }
         }
         private void DownloadWorker(object mirror)
         {
-            Interlocked.Increment(ref workersRunning);
-            while (!requestedStopping)
+            try
             {
-                Chunk chunk = chunkManager.GetNextChunk();
-                if (chunk == null)
-                    break;
-                try
+                Interlocked.Increment(ref workersRunning);
+                while (!requestedStopping)
                 {
-                    HttpWebRequest request = (HttpWebRequest)WebRequest.Create(mirror as string);
-                    request.SendChunked = false;
-                    request.KeepAlive = false;
-                    request.ReadWriteTimeout = 5000;
-                    request.Timeout = 5000;
-                    request.AddRange("bytes", chunk.Start, chunk.End);
-                    HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-                    Stream ws = response.GetResponseStream();
-                    MemoryStream ms = new MemoryStream();
-                    ws.CopyTo(ms);
-                    stateMonitor.AddBytes(ms.Length);
-                    cacheManager.FinishChunk(ms.ToArray(), chunk);
-                    ws.Close();
-                    response.Close();
-                    //request.Abort();
-                }
-                catch (Exception)
-                {
-                    if(chunkManager.GiveUpChunk(chunk, mirror as string) && workersRunning > MinWorkers)
+                    Chunk chunk = chunkManager.GetNextChunk();
+                    if (chunk == null)
                         break;
+                    try
+                    {
+                        HttpWebRequest request = (HttpWebRequest)WebRequest.Create(mirror as string);
+                        request.SendChunked = false;
+                        request.KeepAlive = false;
+                        request.ReadWriteTimeout = 5000;
+                        request.Timeout = 5000;
+                        request.AddRange("bytes", chunk.Start, chunk.End);
+                        HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+                        Stream ws = response.GetResponseStream();
+                        MemoryStream ms = new MemoryStream();
+                        ws.CopyTo(ms);
+                        stateMonitor.AddBytes(ms.Length);
+                        cacheManager.FinishChunk(ms.ToArray(), chunk);
+                        ws.Close();
+                        response.Close();
+                        //request.Abort();
+                    }
+                    catch (Exception)
+                    {
+                        if (chunkManager.GiveUpChunk(chunk, mirror as string) && workersRunning > MinWorkers)
+                            break;
+                    }
                 }
+                Interlocked.Decrement(ref workersRunning);
             }
-            Interlocked.Decrement(ref workersRunning);
+            catch (Exception ex)
+            {
+                DownloadError($"工作线程错误：{ex.Message}");
+                SetState(EngineState.Error);
+                throw;
+            }
         }
 
         private void SetState(EngineState state)
@@ -230,5 +248,6 @@ namespace TurboEngine.Core
         Finished,
         Stopping,
         Stopped,
+        Error
     }
 }

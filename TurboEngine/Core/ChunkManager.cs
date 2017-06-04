@@ -27,19 +27,26 @@ namespace TurboEngine.Core
             locker = new object();
             chunkOffset = 0;
             //load tep file
-            if (File.Exists(tepFilePath))
+            try
             {
-                if (new FileInfo(tepFilePath).Length > 0)
+                if (File.Exists(tepFilePath))
                 {
-                    BinaryReader reader = new BinaryReader(File.OpenRead(tepFilePath));
-                    int chunk_size = reader.ReadInt32();
-                    if (chunk_size == CHUNK_SIZE)
+                    if (new FileInfo(tepFilePath).Length > 0)
                     {
-                        while (reader.BaseStream.Position < reader.BaseStream.Length)
-                            tepDownloadedList.Add(reader.ReadInt64());
+                        BinaryReader reader = new BinaryReader(File.OpenRead(tepFilePath));
+                        int chunk_size = reader.ReadInt32();
+                        if (chunk_size == CHUNK_SIZE)
+                        {
+                            while (reader.BaseStream.Position < reader.BaseStream.Length)
+                                tepDownloadedList.Add(reader.ReadInt64());
+                        }
+                        reader.Close();
                     }
-                    reader.Close();
                 }
+            }
+            catch (Exception)
+            {
+                tepDownloadedList.Clear();
             }
         }
 

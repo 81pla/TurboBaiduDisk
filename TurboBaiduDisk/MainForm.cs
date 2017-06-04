@@ -239,7 +239,7 @@ namespace TurboBaiduDisk
         {
             foreach (ListViewItem item in listView1.SelectedItems)
             {
-                new CreateDownloadForm((textBox1.Text.EndsWith("/") ? textBox1.Text : textBox1.Text + "/") + item.Text).ShowDialog();
+                new CreateDownloadForm(Path.Combine(textBox1.Text,item.Text).Replace('\\','/'), item.Text, item.SubItems[1].Text).Show();
             }
         }
 

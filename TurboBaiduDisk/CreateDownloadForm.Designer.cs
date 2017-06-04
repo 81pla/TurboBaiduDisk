@@ -44,6 +44,7 @@
             this.lblNoticeBan = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnDownloadNow = new System.Windows.Forms.Button();
+            this.btnShowLinks = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -228,15 +229,27 @@
             this.btnDownloadNow.Name = "btnDownloadNow";
             this.btnDownloadNow.Size = new System.Drawing.Size(75, 23);
             this.btnDownloadNow.TabIndex = 5;
-            this.btnDownloadNow.Text = "立即下载";
+            this.btnDownloadNow.Text = "下载";
             this.btnDownloadNow.UseVisualStyleBackColor = true;
             this.btnDownloadNow.Click += new System.EventHandler(this.btnDownloadNow_Click);
+            // 
+            // btnShowLinks
+            // 
+            this.btnShowLinks.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnShowLinks.Location = new System.Drawing.Point(185, 336);
+            this.btnShowLinks.Name = "btnShowLinks";
+            this.btnShowLinks.Size = new System.Drawing.Size(99, 23);
+            this.btnShowLinks.TabIndex = 6;
+            this.btnShowLinks.Text = "显示下载链接";
+            this.btnShowLinks.UseVisualStyleBackColor = true;
+            this.btnShowLinks.Click += new System.EventHandler(this.btnShowLinks_Click);
             // 
             // CreateDownloadForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(558, 371);
+            this.Controls.Add(this.btnShowLinks);
             this.Controls.Add(this.btnDownloadNow);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.lblNoticeBan);
@@ -275,5 +288,6 @@
         private System.Windows.Forms.Label lblNoticeBan;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnDownloadNow;
+        private System.Windows.Forms.Button btnShowLinks;
     }
 }
