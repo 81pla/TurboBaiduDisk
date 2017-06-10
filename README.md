@@ -9,4 +9,4 @@ Download files from baidu-netdisk with speed it should be. It can work with full
 * APIClient - A baidu-netdisk private API wrapper.
 * TurboEngine - Core engine for fast downloading.
 ## Help To Improve
-Welcome to pull requests to improve this software.
+Welcome to pull requests to help to improve this software.
