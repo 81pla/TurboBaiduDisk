@@ -197,13 +197,22 @@ namespace TurboEngine.Core
                         HttpWebRequest request = (HttpWebRequest)WebRequest.Create(mirror as string);
                         request.SendChunked = false;
                         request.KeepAlive = false;
-                        request.ReadWriteTimeout = 5000;
-                        request.Timeout = 5000;
+                        request.ReadWriteTimeout = 3000;
+                        request.Timeout = 3000;
                         request.AddRange("bytes", chunk.Start, chunk.End);
                         HttpWebResponse response = (HttpWebResponse)request.GetResponse();
                         Stream ws = response.GetResponseStream();
+
+                        //----transfer bytes----
                         MemoryStream ms = new MemoryStream();
-                        ws.CopyTo(ms);
+                        int read = 0;
+                        byte[] buffer = new byte[1024 * 8];
+                        while((read = ws.Read(buffer, 0, buffer.Length)) > 0)
+                        {
+                            ms.Write(buffer, 0, read);
+                        }
+                        //----transfer bytes----
+
                         stateMonitor.AddBytes(ms.Length);
                         cacheManager.FinishChunk(ms.ToArray(), chunk);
                         ws.Close();
@@ -214,6 +223,7 @@ namespace TurboEngine.Core
                     {
                         if (chunkManager.GiveUpChunk(chunk, mirror as string) && workersRunning > MinWorkers)
                             break;
+                        Thread.Sleep(3000);
                     }
                 }
                 Interlocked.Decrement(ref workersRunning);

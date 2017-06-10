@@ -16,7 +16,7 @@ namespace TurboBaiduDisk
     public partial class SingleDownloadForm : Form
     {
         DownloadEngine engine;
-
+        Task uiTask;
         public SingleDownloadForm(List<string> mirrors)
         {
             InitializeComponent();
@@ -50,8 +50,7 @@ namespace TurboBaiduDisk
         }
         private void StartDownlaod()
         {
-            engine.Start();
-            Task.Run(new Action(StatePolling));
+            uiTask = Task.Run(new Action(StatePolling));
         }
         private void StatePolling()
         {
@@ -80,7 +79,7 @@ namespace TurboBaiduDisk
                     Thread.Sleep(1000);
                 }
 
-                while (engine.State != EngineState.Finished || engine.State != EngineState.Stopped)
+                while (engine.State != EngineState.Finished && engine.State != EngineState.Stopped)
                     ;
 
                 switch (engine.State)
@@ -99,8 +98,7 @@ namespace TurboBaiduDisk
             }
             catch (Exception ex)
             {
-
-                throw;
+                MessageBox.Show($"UIRefresh: {ex.Message}");
             }
         }
         private string GetSizeString(long size)

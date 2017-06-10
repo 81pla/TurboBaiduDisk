@@ -89,8 +89,8 @@ namespace TurboEngine.Core
                 FlushCache();
                 fs.Close();
                 pfs.Close();
-                if (File.Exists(FilePath))
-                    File.Delete(FilePath); //bug fix "当文件已存在时，无法创建该文件。"
+                //if (File.Exists(FilePath))
+                //    File.Delete(FilePath); //bug fix "当文件已存在时，无法创建该文件。"
                 File.Move(TEDFilePath, FilePath);
                 File.Delete(TEPFilePath);
             }
