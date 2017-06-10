@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MetroFramework.Forms;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,7 +14,7 @@ using TurboEngine.Core;
 
 namespace TurboBaiduDisk
 {
-    public partial class SingleDownloadForm : Form
+    public partial class SingleDownloadForm : MetroForm
     {
         DownloadEngine engine;
         Task uiTask;
@@ -117,18 +118,20 @@ namespace TurboBaiduDisk
         
         private void btnPause_Click(object sender, EventArgs e)
         {
-            if(btnPause.Text == "暂停")
-            {
-                btnCancel.Enabled = false;
-                btnPause.Enabled = false;
-                engine.Pause();
-            }
+            btnCancel.Enabled = false;
+            btnPause.Enabled = false;
+            engine.Pause();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
             engine.Stop();
             Close();
+        }
+
+        private void SingleDownloadForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            engine.Stop();
         }
     }
 }

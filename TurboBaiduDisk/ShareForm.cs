@@ -1,5 +1,6 @@
 ﻿using APIClient;
 using APIClient.Model;
+using MetroFramework.Forms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,9 +13,13 @@ using System.Windows.Forms;
 
 namespace TurboBaiduDisk
 {
-    public partial class ShareForm : Form
+    public partial class ShareForm : MetroForm
     {
         string[] path_list;
+        public ShareForm()
+        {
+            InitializeComponent();
+        }
         public ShareForm(string[] paths)
         {
             InitializeComponent();
@@ -49,11 +54,6 @@ namespace TurboBaiduDisk
                 txtPwd.Enabled = false;
         }
 
-        private void textBox3_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnCancel_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
@@ -65,7 +65,7 @@ namespace TurboBaiduDisk
             if (checkBox1.Checked)
             {
                 ShareResult result = client.SharePrivate(path_list, txtPwd.Text);
-                if(result.errno != 0)
+                if (result.errno != 0)
                 {
                     MessageBox.Show($"{Errno.Instance.GetDescription(result.errno)}. 分享失败.");
                     return;

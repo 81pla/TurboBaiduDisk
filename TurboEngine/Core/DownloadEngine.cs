@@ -77,7 +77,6 @@ namespace TurboEngine.Core
                     requestedStopping = true;
                     stateMonitor.StopSpeedTimer();
                     cacheManager.Pause();
-                    Task.WaitAll(tasks.ToArray());
                     SetState(EngineState.Stopped);
                 }).Start();
             }
@@ -211,10 +210,10 @@ namespace TurboEngine.Core
                         while((read = ws.Read(buffer, 0, buffer.Length)) > 0)
                         {
                             ms.Write(buffer, 0, read);
+                            stateMonitor.AddBytes(read);
                         }
                         //----transfer bytes----
-
-                        stateMonitor.AddBytes(ms.Length);
+                        
                         cacheManager.FinishChunk(ms.ToArray(), chunk);
                         ws.Close();
                         response.Close();

@@ -1,5 +1,6 @@
 ﻿using APIClient;
 using APIClient.Model;
+using MetroFramework.Forms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,7 +16,7 @@ using System.Windows.Forms;
 
 namespace TurboBaiduDisk
 {
-    public partial class MainForm : Form
+    public partial class MainForm : MetroForm
     {
         Client client;
         string[] fileOpCacheList;
@@ -46,18 +47,18 @@ namespace TurboBaiduDisk
         }
         private void Init()
         {
-            SetStateText("Loading...");
+            metroProgressSpinner1.Visible = true;
             UserInfoResult uinfo = client.GetUserInfo();
             QuotaResult quota = client.GetQuota();
-            label1.Text = uinfo.records[0].uname;
+            lblUserName.Text = uinfo.records[0].uname;
             pictureBox1.Image = Image.FromStream(WebRequest.Create(uinfo.records[0].avatar_url).GetResponse().GetResponseStream());
             label2.Text = $"\t{(double)quota.used / 1024 / 1024 / 1024:#.##}GB/{(double)quota.total / 1024 / 1024 / 1024:#.##}GB";
-            SetStateText("Inited.");
-            RefreshPath("/");
+            metroProgressSpinner1.Visible = false;
+            RefreshPath("/", true);
         }
         private void SetStateText(string message)
         {
-            statusStrip1.Items[0].Text = message;
+            //statusStrip1.Items[0].Text = message;
         }
         private void MainForm_Load(object sender, EventArgs e)
         {
@@ -70,9 +71,10 @@ namespace TurboBaiduDisk
             TimeSpan toNow = new TimeSpan(lTime);
             return dateTimeStart.Add(toNow);
         }
-        private void RefreshPath(string path)
+        private void RefreshPath(string path, bool manual)
         {
             string rpath = (path == "" ? "/" : path);
+            metroProgressSpinner1.Visible = manual ? true : false;
             ListFileResult flst = client.GetFileList(rpath);
             if (flst.list == null)
             {
@@ -84,7 +86,10 @@ namespace TurboBaiduDisk
                 foreach (Item item in flst.list)
                 {
                     if (!listView1.Items.ContainsKey(item.path))
+                    {
+                        metroProgressSpinner1.Visible = false;
                         return;
+                    }
                 }
             }
             listView1.BeginUpdate();
@@ -111,6 +116,7 @@ namespace TurboBaiduDisk
             textBox1.Text = rpath;
             listView1.Items[0].Selected = true;
             listView1.SelectedItems.Clear();
+            metroProgressSpinner1.Visible = false;
         }
         private string GetSizeString(long size)
         {
@@ -152,11 +158,11 @@ namespace TurboBaiduDisk
                 if (listView1.SelectedItems[0].Text == "..")
                 {
                     string oPath = textBox1.Text;
-                    RefreshPath(oPath.Remove(oPath.LastIndexOf('/')));
+                    RefreshPath(oPath.Remove(oPath.LastIndexOf('/')), true);
                 }
                 else
                 {
-                    RefreshPath((textBox1.Text.EndsWith("/") ? textBox1.Text : textBox1.Text + "/") + listView1.SelectedItems[0].Text);
+                    RefreshPath((textBox1.Text.EndsWith("/") ? textBox1.Text : textBox1.Text + "/") + listView1.SelectedItems[0].Text, true);
                 }
             }
             else
@@ -214,7 +220,7 @@ namespace TurboBaiduDisk
             Task.Run(new Action(() =>
             {
                 pictureBox2.Enabled = false;
-                RefreshPath(textBox1.Text);
+                RefreshPath(textBox1.Text, true);
                 pictureBox2.Enabled = true;
             }));
         }
@@ -222,18 +228,9 @@ namespace TurboBaiduDisk
         private void tmrAutoRefresh_Tick(object sender, EventArgs e)
         {
             if (listView1.SelectedItems.Count == 0)
-                pictureBox2_Click(null, null);
+                RefreshPath(textBox1.Text, false);
         }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-            int indexD = Controls.GetChildIndex(panelDownloadList);
-            int indexB = Controls.GetChildIndex(panelMainBody);
-            if (indexD > indexB)
-                panelDownloadList.BringToFront();
-            else
-                panelMainBody.BringToFront();
-        }
+        
 
         private void 下载ToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -375,6 +372,11 @@ namespace TurboBaiduDisk
         private void 重命名ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             
+        }
+
+        private void linkLabel1_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://github.com/lizhengxiao/TurboBaiduDisk");
         }
     }
 }

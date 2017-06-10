@@ -31,10 +31,9 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.panelHeader = new System.Windows.Forms.Panel();
-            this.label3 = new System.Windows.Forms.Label();
-            this.btnSettings = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.btnSettings = new MetroFramework.Controls.MetroButton();
+            this.label2 = new MetroFramework.Controls.MetroLabel();
+            this.lblUserName = new MetroFramework.Controls.MetroLabel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panelMainBody = new System.Windows.Forms.Panel();
             this.listView1 = new System.Windows.Forms.ListView();
@@ -56,9 +55,7 @@
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.panelNavigateBar = new System.Windows.Forms.Panel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.textBox1 = new MetroFramework.Controls.MetroTextBox();
             this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.上传ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.新建文件夹ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -82,52 +79,29 @@
             this.退出登录ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.退出ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tmrAutoRefresh = new System.Windows.Forms.Timer(this.components);
-            this.panelDownloadList = new System.Windows.Forms.Panel();
-            this.listView2 = new System.Windows.Forms.ListView();
-            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.metroProgressSpinner1 = new MetroFramework.Controls.MetroProgressSpinner();
             this.panelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panelMainBody.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.panelNavigateBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            this.statusStrip1.SuspendLayout();
             this.contextMenuStrip2.SuspendLayout();
             this.contextMenuStrip3.SuspendLayout();
-            this.panelDownloadList.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelHeader
             // 
-            this.panelHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(142)))), ((int)(((byte)(231)))));
-            this.panelHeader.Controls.Add(this.label3);
+            this.panelHeader.BackColor = System.Drawing.Color.White;
             this.panelHeader.Controls.Add(this.btnSettings);
             this.panelHeader.Controls.Add(this.label2);
-            this.panelHeader.Controls.Add(this.label1);
+            this.panelHeader.Controls.Add(this.lblUserName);
             this.panelHeader.Controls.Add(this.pictureBox1);
             this.panelHeader.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelHeader.Location = new System.Drawing.Point(0, 0);
+            this.panelHeader.Location = new System.Drawing.Point(20, 60);
             this.panelHeader.Name = "panelHeader";
-            this.panelHeader.Size = new System.Drawing.Size(746, 83);
+            this.panelHeader.Size = new System.Drawing.Size(706, 83);
             this.panelHeader.TabIndex = 0;
-            // 
-            // label3
-            // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.label3.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label3.ForeColor = System.Drawing.Color.Gold;
-            this.label3.Location = new System.Drawing.Point(427, 62);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(307, 18);
-            this.label3.TabIndex = 4;
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // btnSettings
             // 
@@ -135,11 +109,11 @@
             this.btnSettings.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(142)))), ((int)(((byte)(231)))));
             this.btnSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSettings.ForeColor = System.Drawing.Color.White;
-            this.btnSettings.Location = new System.Drawing.Point(659, 12);
+            this.btnSettings.Location = new System.Drawing.Point(619, 12);
             this.btnSettings.Name = "btnSettings";
-            this.btnSettings.Size = new System.Drawing.Size(75, 23);
             this.btnSettings.TabIndex = 3;
             this.btnSettings.Text = "更多..";
+            this.btnSettings.UseSelectable = true;
             this.btnSettings.UseVisualStyleBackColor = false;
             this.btnSettings.Click += new System.EventHandler(this.btnSettings_Click);
             // 
@@ -148,26 +122,26 @@
             this.label2.AutoSize = true;
             this.label2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.label2.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.ForeColor = System.Drawing.Color.Black;
             this.label2.Location = new System.Drawing.Point(72, 49);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(44, 17);
+            this.label2.Size = new System.Drawing.Size(46, 19);
             this.label2.TabIndex = 2;
             this.label2.Text = "Quota";
             this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
-            // label1
+            // lblUserName
             // 
-            this.label1.AutoSize = true;
-            this.label1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.label1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(72, 19);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(86, 21);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "正在获取...";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
+            this.lblUserName.AutoSize = true;
+            this.lblUserName.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblUserName.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lblUserName.ForeColor = System.Drawing.Color.Black;
+            this.lblUserName.Location = new System.Drawing.Point(72, 19);
+            this.lblUserName.Name = "label1";
+            this.lblUserName.Size = new System.Drawing.Size(74, 19);
+            this.lblUserName.TabIndex = 1;
+            this.lblUserName.Text = "正在获取...";
+            this.lblUserName.Click += new System.EventHandler(this.label1_Click);
             // 
             // pictureBox1
             // 
@@ -185,9 +159,9 @@
             this.panelMainBody.Controls.Add(this.listView1);
             this.panelMainBody.Controls.Add(this.panelNavigateBar);
             this.panelMainBody.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelMainBody.Location = new System.Drawing.Point(0, 83);
+            this.panelMainBody.Location = new System.Drawing.Point(20, 143);
             this.panelMainBody.Name = "panelMainBody";
-            this.panelMainBody.Size = new System.Drawing.Size(746, 351);
+            this.panelMainBody.Size = new System.Drawing.Size(706, 293);
             this.panelMainBody.TabIndex = 1;
             // 
             // listView1
@@ -203,9 +177,9 @@
             this.listView1.HideSelection = false;
             this.listView1.LabelEdit = true;
             this.listView1.LargeImageList = this.imageList2;
-            this.listView1.Location = new System.Drawing.Point(0, 29);
+            this.listView1.Location = new System.Drawing.Point(0, 33);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(746, 322);
+            this.listView1.Size = new System.Drawing.Size(706, 260);
             this.listView1.SmallImageList = this.imageList1;
             this.listView1.TabIndex = 1;
             this.listView1.UseCompatibleStateImageBehavior = false;
@@ -334,14 +308,14 @@
             this.panelNavigateBar.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelNavigateBar.Location = new System.Drawing.Point(0, 0);
             this.panelNavigateBar.Name = "panelNavigateBar";
-            this.panelNavigateBar.Size = new System.Drawing.Size(746, 29);
+            this.panelNavigateBar.Size = new System.Drawing.Size(706, 33);
             this.panelNavigateBar.TabIndex = 0;
             // 
             // pictureBox2
             // 
             this.pictureBox2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(3, 6);
+            this.pictureBox2.Location = new System.Drawing.Point(3, 8);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(16, 16);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -353,30 +327,19 @@
             // 
             this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.textBox1.Lines = new string[0];
             this.textBox1.Location = new System.Drawing.Point(25, 6);
+            this.textBox1.MaxLength = 32767;
             this.textBox1.Name = "textBox1";
+            this.textBox1.PasswordChar = '\0';
             this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(709, 16);
+            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.textBox1.SelectedText = "";
+            this.textBox1.Size = new System.Drawing.Size(669, 22);
             this.textBox1.TabIndex = 1;
+            this.textBox1.UseSelectable = true;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
-            // 
-            // statusStrip1
-            // 
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel1});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 434);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(746, 22);
-            this.statusStrip1.TabIndex = 2;
-            this.statusStrip1.Text = "statusStrip1";
-            // 
-            // toolStripStatusLabel1
-            // 
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(31, 17);
-            this.toolStripStatusLabel1.Text = "0 项";
             // 
             // contextMenuStrip2
             // 
@@ -544,78 +507,29 @@
             this.tmrAutoRefresh.Interval = 5000;
             this.tmrAutoRefresh.Tick += new System.EventHandler(this.tmrAutoRefresh_Tick);
             // 
-            // panelDownloadList
+            // metroProgressSpinner1
             // 
-            this.panelDownloadList.Controls.Add(this.listView2);
-            this.panelDownloadList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelDownloadList.Location = new System.Drawing.Point(0, 0);
-            this.panelDownloadList.Name = "panelDownloadList";
-            this.panelDownloadList.Size = new System.Drawing.Size(746, 456);
-            this.panelDownloadList.TabIndex = 3;
-            // 
-            // listView2
-            // 
-            this.listView2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.listView2.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader4,
-            this.columnHeader9,
-            this.columnHeader5,
-            this.columnHeader6,
-            this.columnHeader7,
-            this.columnHeader8});
-            this.listView2.FullRowSelect = true;
-            this.listView2.GridLines = true;
-            this.listView2.Location = new System.Drawing.Point(3, 6);
-            this.listView2.Name = "listView2";
-            this.listView2.Size = new System.Drawing.Size(740, 447);
-            this.listView2.TabIndex = 1;
-            this.listView2.UseCompatibleStateImageBehavior = false;
-            this.listView2.View = System.Windows.Forms.View.Details;
-            // 
-            // columnHeader4
-            // 
-            this.columnHeader4.Text = "文件名";
-            this.columnHeader4.Width = 178;
-            // 
-            // columnHeader9
-            // 
-            this.columnHeader9.Text = "状态";
-            this.columnHeader9.Width = 67;
-            // 
-            // columnHeader5
-            // 
-            this.columnHeader5.Text = "进度";
-            this.columnHeader5.Width = 69;
-            // 
-            // columnHeader6
-            // 
-            this.columnHeader6.Text = "已下载/文件大小";
-            this.columnHeader6.Width = 147;
-            // 
-            // columnHeader7
-            // 
-            this.columnHeader7.Text = "速度";
-            this.columnHeader7.Width = 96;
-            // 
-            // columnHeader8
-            // 
-            this.columnHeader8.Text = "剩余时间";
-            this.columnHeader8.Width = 122;
+            this.metroProgressSpinner1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.metroProgressSpinner1.Location = new System.Drawing.Point(341, 196);
+            this.metroProgressSpinner1.Maximum = 100;
+            this.metroProgressSpinner1.Name = "metroProgressSpinner1";
+            this.metroProgressSpinner1.Size = new System.Drawing.Size(64, 64);
+            this.metroProgressSpinner1.TabIndex = 0;
+            this.metroProgressSpinner1.Text = "Loading";
+            this.metroProgressSpinner1.UseSelectable = true;
+            this.metroProgressSpinner1.Value = 50;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(746, 456);
+            this.Controls.Add(this.metroProgressSpinner1);
             this.Controls.Add(this.panelMainBody);
             this.Controls.Add(this.panelHeader);
-            this.Controls.Add(this.statusStrip1);
-            this.Controls.Add(this.panelDownloadList);
             this.Name = "MainForm";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "百度云云云";
+            this.ShadowType = MetroFramework.Forms.MetroFormShadowType.SystemShadow;
+            this.Text = "TurboBaiduDisk";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.Shown += new System.EventHandler(this.MainForm_Shown);
             this.panelHeader.ResumeLayout(false);
@@ -626,28 +540,21 @@
             this.panelNavigateBar.ResumeLayout(false);
             this.panelNavigateBar.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            this.statusStrip1.ResumeLayout(false);
-            this.statusStrip1.PerformLayout();
             this.contextMenuStrip2.ResumeLayout(false);
             this.contextMenuStrip3.ResumeLayout(false);
-            this.panelDownloadList.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.Panel panelHeader;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
+        private MetroFramework.Controls.MetroLabel label2;
+        private MetroFramework.Controls.MetroLabel lblUserName;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Panel panelMainBody;
         private System.Windows.Forms.Panel panelNavigateBar;
         private System.Windows.Forms.ListView listView1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.StatusStrip statusStrip1;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
@@ -677,7 +584,7 @@
         private System.Windows.Forms.ToolStripMenuItem 文件名称ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 文件大小ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 修改时间ToolStripMenuItem;
-        private System.Windows.Forms.Button btnSettings;
+        private MetroFramework.Controls.MetroButton btnSettings;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip3;
         private System.Windows.Forms.ToolStripMenuItem 访问百度网盘网站ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 进入回收站ToolStripMenuItem;
@@ -687,16 +594,9 @@
         private System.Windows.Forms.ToolStripMenuItem 退出ToolStripMenuItem;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Timer tmrAutoRefresh;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Panel panelDownloadList;
-        private System.Windows.Forms.ListView listView2;
-        private System.Windows.Forms.ColumnHeader columnHeader4;
-        private System.Windows.Forms.ColumnHeader columnHeader9;
-        private System.Windows.Forms.ColumnHeader columnHeader5;
-        private System.Windows.Forms.ColumnHeader columnHeader6;
-        private System.Windows.Forms.ColumnHeader columnHeader7;
-        private System.Windows.Forms.ColumnHeader columnHeader8;
         private System.Windows.Forms.ToolStripMenuItem 打开toolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private MetroFramework.Controls.MetroTextBox textBox1;
+        private MetroFramework.Controls.MetroProgressSpinner metroProgressSpinner1;
     }
 }

@@ -1,5 +1,6 @@
 ﻿using APIClient;
 using APIClient.Model;
+using MetroFramework.Forms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,7 +15,7 @@ using TurboEngine.Core;
 
 namespace TurboBaiduDisk
 {
-    public partial class CreateDownloadForm : Form
+    public partial class CreateDownloadForm : MetroForm
     {
         DownloadEngine engine;
         List<string> mirrors = new List<string>();
@@ -30,7 +31,6 @@ namespace TurboBaiduDisk
         private void CreateDownloadForm_Load(object sender, EventArgs e)
         {
             txtSaveto.Text = Program.Config.DefaultDownloadPath;
-            Height = 192;
         }
 
         private void CreateDownloadForm_Shown(object sender, EventArgs e)
@@ -92,7 +92,7 @@ namespace TurboBaiduDisk
 
         private void btnShowLinks_Click(object sender, EventArgs e)
         {
-            Height = 410;
+            Height = 451;
             btnShowLinks.Visible = false;
         }
     }

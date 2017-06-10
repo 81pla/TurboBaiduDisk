@@ -29,22 +29,22 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btnSetPath = new System.Windows.Forms.Button();
-            this.txtSaveto = new System.Windows.Forms.TextBox();
+            this.btnSetPath = new MetroFramework.Controls.MetroButton();
+            this.txtSaveto = new MetroFramework.Controls.MetroTextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.txtSize = new System.Windows.Forms.TextBox();
+            this.txtSize = new MetroFramework.Controls.MetroTextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.txtFilename = new System.Windows.Forms.TextBox();
+            this.txtFilename = new MetroFramework.Controls.MetroTextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.txtRemotePath = new System.Windows.Forms.TextBox();
+            this.txtRemotePath = new MetroFramework.Controls.MetroTextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnDownload = new System.Windows.Forms.Button();
+            this.btnDownload = new MetroFramework.Controls.MetroButton();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.txtList = new System.Windows.Forms.TextBox();
+            this.txtList = new MetroFramework.Controls.MetroTextBox();
             this.lblNoticeBan = new System.Windows.Forms.Label();
-            this.btnCancel = new System.Windows.Forms.Button();
-            this.btnDownloadNow = new System.Windows.Forms.Button();
-            this.btnShowLinks = new System.Windows.Forms.Button();
+            this.btnCancel = new MetroFramework.Controls.MetroButton();
+            this.btnDownloadNow = new MetroFramework.Controls.MetroButton();
+            this.btnShowLinks = new MetroFramework.Controls.MetroButton();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -62,7 +62,7 @@
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.txtRemotePath);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(12, 224);
+            this.groupBox1.Location = new System.Drawing.Point(12, 64);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(534, 106);
             this.groupBox1.TabIndex = 0;
@@ -77,6 +77,7 @@
             this.btnSetPath.Size = new System.Drawing.Size(59, 21);
             this.btnSetPath.TabIndex = 8;
             this.btnSetPath.Text = "设置";
+            this.btnSetPath.UseSelectable = true;
             this.btnSetPath.UseVisualStyleBackColor = true;
             this.btnSetPath.Click += new System.EventHandler(this.btnSetPath_Click);
             // 
@@ -84,10 +85,16 @@
             // 
             this.txtSaveto.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtSaveto.Lines = new string[0];
             this.txtSaveto.Location = new System.Drawing.Point(71, 74);
+            this.txtSaveto.MaxLength = 32767;
             this.txtSaveto.Name = "txtSaveto";
+            this.txtSaveto.PasswordChar = '\0';
+            this.txtSaveto.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.txtSaveto.SelectedText = "";
             this.txtSaveto.Size = new System.Drawing.Size(392, 21);
             this.txtSaveto.TabIndex = 7;
+            this.txtSaveto.UseSelectable = true;
             // 
             // label4
             // 
@@ -101,12 +108,19 @@
             // txtSize
             // 
             this.txtSize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtSize.Lines = new string[] {
+        "正在获取..."};
             this.txtSize.Location = new System.Drawing.Point(327, 47);
+            this.txtSize.MaxLength = 32767;
             this.txtSize.Name = "txtSize";
+            this.txtSize.PasswordChar = '\0';
             this.txtSize.ReadOnly = true;
+            this.txtSize.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.txtSize.SelectedText = "";
             this.txtSize.Size = new System.Drawing.Size(201, 21);
             this.txtSize.TabIndex = 5;
             this.txtSize.Text = "正在获取...";
+            this.txtSize.UseSelectable = true;
             // 
             // label3
             // 
@@ -122,12 +136,19 @@
             // 
             this.txtFilename.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtFilename.Lines = new string[] {
+        "正在获取..."};
             this.txtFilename.Location = new System.Drawing.Point(71, 47);
+            this.txtFilename.MaxLength = 32767;
             this.txtFilename.Name = "txtFilename";
+            this.txtFilename.PasswordChar = '\0';
             this.txtFilename.ReadOnly = true;
+            this.txtFilename.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.txtFilename.SelectedText = "";
             this.txtFilename.Size = new System.Drawing.Size(209, 21);
             this.txtFilename.TabIndex = 3;
             this.txtFilename.Text = "正在获取...";
+            this.txtFilename.UseSelectable = true;
             // 
             // label2
             // 
@@ -142,11 +163,17 @@
             // 
             this.txtRemotePath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtRemotePath.Lines = new string[0];
             this.txtRemotePath.Location = new System.Drawing.Point(71, 20);
+            this.txtRemotePath.MaxLength = 32767;
             this.txtRemotePath.Name = "txtRemotePath";
+            this.txtRemotePath.PasswordChar = '\0';
             this.txtRemotePath.ReadOnly = true;
+            this.txtRemotePath.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.txtRemotePath.SelectedText = "";
             this.txtRemotePath.Size = new System.Drawing.Size(457, 21);
             this.txtRemotePath.TabIndex = 1;
+            this.txtRemotePath.UseSelectable = true;
             // 
             // label1
             // 
@@ -161,11 +188,12 @@
             // 
             this.btnDownload.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnDownload.Enabled = false;
-            this.btnDownload.Location = new System.Drawing.Point(452, 336);
+            this.btnDownload.Location = new System.Drawing.Point(452, 176);
             this.btnDownload.Name = "btnDownload";
             this.btnDownload.Size = new System.Drawing.Size(94, 23);
             this.btnDownload.TabIndex = 1;
             this.btnDownload.Text = "加入下载列表";
+            this.btnDownload.UseSelectable = true;
             this.btnDownload.UseVisualStyleBackColor = true;
             this.btnDownload.Click += new System.EventHandler(this.btnDownload_Click);
             // 
@@ -175,9 +203,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox2.Controls.Add(this.txtList);
-            this.groupBox2.Location = new System.Drawing.Point(12, 12);
+            this.groupBox2.Location = new System.Drawing.Point(12, 63);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(534, 206);
+            this.groupBox2.Size = new System.Drawing.Size(534, 0);
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "下载镜像列表";
@@ -189,13 +217,18 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtList.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.txtList.ForeColor = System.Drawing.Color.Blue;
+            this.txtList.Lines = new string[0];
             this.txtList.Location = new System.Drawing.Point(6, 20);
+            this.txtList.MaxLength = 32767;
             this.txtList.Multiline = true;
             this.txtList.Name = "txtList";
+            this.txtList.PasswordChar = '\0';
             this.txtList.ReadOnly = true;
             this.txtList.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtList.Size = new System.Drawing.Size(522, 167);
+            this.txtList.SelectedText = "";
+            this.txtList.Size = new System.Drawing.Size(522, 0);
             this.txtList.TabIndex = 0;
+            this.txtList.UseSelectable = true;
             this.txtList.WordWrap = false;
             // 
             // lblNoticeBan
@@ -203,7 +236,7 @@
             this.lblNoticeBan.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblNoticeBan.AutoSize = true;
             this.lblNoticeBan.ForeColor = System.Drawing.Color.Red;
-            this.lblNoticeBan.Location = new System.Drawing.Point(12, 341);
+            this.lblNoticeBan.Location = new System.Drawing.Point(12, 181);
             this.lblNoticeBan.Name = "lblNoticeBan";
             this.lblNoticeBan.Size = new System.Drawing.Size(107, 12);
             this.lblNoticeBan.TabIndex = 3;
@@ -213,11 +246,11 @@
             // btnCancel
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCancel.Location = new System.Drawing.Point(290, 336);
+            this.btnCancel.Location = new System.Drawing.Point(290, 176);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 4;
             this.btnCancel.Text = "取消";
+            this.btnCancel.UseSelectable = true;
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
@@ -225,22 +258,23 @@
             // 
             this.btnDownloadNow.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnDownloadNow.Enabled = false;
-            this.btnDownloadNow.Location = new System.Drawing.Point(371, 336);
+            this.btnDownloadNow.Location = new System.Drawing.Point(371, 176);
             this.btnDownloadNow.Name = "btnDownloadNow";
-            this.btnDownloadNow.Size = new System.Drawing.Size(75, 23);
             this.btnDownloadNow.TabIndex = 5;
             this.btnDownloadNow.Text = "下载";
+            this.btnDownloadNow.UseSelectable = true;
             this.btnDownloadNow.UseVisualStyleBackColor = true;
             this.btnDownloadNow.Click += new System.EventHandler(this.btnDownloadNow_Click);
             // 
             // btnShowLinks
             // 
             this.btnShowLinks.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnShowLinks.Location = new System.Drawing.Point(185, 336);
+            this.btnShowLinks.Location = new System.Drawing.Point(185, 176);
             this.btnShowLinks.Name = "btnShowLinks";
             this.btnShowLinks.Size = new System.Drawing.Size(99, 23);
             this.btnShowLinks.TabIndex = 6;
             this.btnShowLinks.Text = "显示下载链接";
+            this.btnShowLinks.UseSelectable = true;
             this.btnShowLinks.UseVisualStyleBackColor = true;
             this.btnShowLinks.Click += new System.EventHandler(this.btnShowLinks_Click);
             // 
@@ -248,7 +282,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(558, 371);
+            this.ClientSize = new System.Drawing.Size(558, 211);
             this.Controls.Add(this.btnShowLinks);
             this.Controls.Add(this.btnDownloadNow);
             this.Controls.Add(this.btnCancel);
@@ -257,14 +291,13 @@
             this.Controls.Add(this.btnDownload);
             this.Controls.Add(this.groupBox1);
             this.Name = "CreateDownloadForm";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.ShadowType = MetroFramework.Forms.MetroFormShadowType.SystemShadow;
             this.Text = "新建下载";
             this.Load += new System.EventHandler(this.CreateDownloadForm_Load);
             this.Shown += new System.EventHandler(this.CreateDownloadForm_Shown);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -274,20 +307,20 @@
 
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtRemotePath;
+        private MetroFramework.Controls.MetroTextBox txtRemotePath;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btnSetPath;
-        private System.Windows.Forms.TextBox txtSaveto;
+        private MetroFramework.Controls.MetroButton btnSetPath;
+        private MetroFramework.Controls.MetroTextBox txtSaveto;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox txtSize;
+        private MetroFramework.Controls.MetroTextBox txtSize;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox txtFilename;
-        private System.Windows.Forms.Button btnDownload;
+        private MetroFramework.Controls.MetroTextBox txtFilename;
+        private MetroFramework.Controls.MetroButton btnDownload;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.TextBox txtList;
+        private MetroFramework.Controls.MetroTextBox txtList;
         private System.Windows.Forms.Label lblNoticeBan;
-        private System.Windows.Forms.Button btnCancel;
-        private System.Windows.Forms.Button btnDownloadNow;
-        private System.Windows.Forms.Button btnShowLinks;
+        private MetroFramework.Controls.MetroButton btnCancel;
+        private MetroFramework.Controls.MetroButton btnDownloadNow;
+        private MetroFramework.Controls.MetroButton btnShowLinks;
     }
 }
