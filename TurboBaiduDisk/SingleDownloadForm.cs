@@ -40,7 +40,7 @@ namespace TurboBaiduDisk
 
         private void btnOpenDir_Click(object sender, EventArgs e)
         {
-            Process.Start("explorer.exe", lblSaveTo.Text);
+            Process.Start("explorer.exe", $"/select,\"{engine.FullFileName}\"");
             Close();
         }
 
@@ -86,13 +86,15 @@ namespace TurboBaiduDisk
                 {
                     case EngineState.Stopped:
                         lblProgress.Text = $"Stopped.";
-                        btnCancel.Enabled = true;
-                        btnPause.Enabled = true;
+                        Close();
                         break;
                     case EngineState.Finished:
                         lblProgress.Text = $"Finished.";
-                        pnlFinish.Visible = true;
-                        pnlRunning.Visible = false;
+                        this.Invoke(new Action(() =>
+                        {
+                            pnlFinish.Visible = true;
+                            pnlRunning.Visible = false;
+                        }));
                         break;
                 }
             }
@@ -120,11 +122,6 @@ namespace TurboBaiduDisk
                 btnCancel.Enabled = false;
                 btnPause.Enabled = false;
                 engine.Pause();
-                btnPause.Text = "继续";
-            }
-            else
-            {
-                StartDownlaod();
             }
         }
 

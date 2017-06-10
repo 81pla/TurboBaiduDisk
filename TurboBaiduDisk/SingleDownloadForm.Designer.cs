@@ -28,7 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SingleDownloadForm));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lblDOfA = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.lblTimeRemaining = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.lblSpeed = new System.Windows.Forms.Label();
@@ -48,8 +51,6 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnPause = new System.Windows.Forms.Button();
             this.pnlFinish = new System.Windows.Forms.Panel();
-            this.lblDOfA = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.pnlRunning.SuspendLayout();
             this.pnlFinish.SuspendLayout();
@@ -80,6 +81,27 @@
             this.groupBox1.Size = new System.Drawing.Size(409, 217);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
+            // 
+            // lblDOfA
+            // 
+            this.lblDOfA.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblDOfA.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lblDOfA.Location = new System.Drawing.Point(101, 113);
+            this.lblDOfA.Name = "lblDOfA";
+            this.lblDOfA.Size = new System.Drawing.Size(302, 12);
+            this.lblDOfA.TabIndex = 14;
+            this.lblDOfA.Text = "-----";
+            this.lblDOfA.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(6, 113);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(89, 12);
+            this.label8.TabIndex = 13;
+            this.label8.Text = "已下载/总大小:";
             // 
             // lblTimeRemaining
             // 
@@ -214,23 +236,28 @@
             // 
             // btnOpenDir
             // 
+            this.btnOpenDir.Image = ((System.Drawing.Image)(resources.GetObject("btnOpenDir.Image")));
+            this.btnOpenDir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnOpenDir.Location = new System.Drawing.Point(3, 3);
             this.btnOpenDir.Name = "btnOpenDir";
-            this.btnOpenDir.Size = new System.Drawing.Size(75, 23);
+            this.btnOpenDir.Size = new System.Drawing.Size(92, 23);
             this.btnOpenDir.TabIndex = 3;
             this.btnOpenDir.Text = "打开文件夹";
+            this.btnOpenDir.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnOpenDir.UseVisualStyleBackColor = true;
-            this.btnOpenDir.Visible = false;
             this.btnOpenDir.Click += new System.EventHandler(this.btnOpenDir_Click);
             // 
             // btnFinish
             // 
             this.btnFinish.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnFinish.Location = new System.Drawing.Point(331, 3);
+            this.btnFinish.Image = ((System.Drawing.Image)(resources.GetObject("btnFinish.Image")));
+            this.btnFinish.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnFinish.Location = new System.Drawing.Point(344, 3);
             this.btnFinish.Name = "btnFinish";
-            this.btnFinish.Size = new System.Drawing.Size(75, 23);
+            this.btnFinish.Size = new System.Drawing.Size(62, 23);
             this.btnFinish.TabIndex = 4;
             this.btnFinish.Text = "完成";
+            this.btnFinish.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnFinish.UseVisualStyleBackColor = true;
             this.btnFinish.Click += new System.EventHandler(this.btnFinish_Click);
             // 
@@ -247,11 +274,14 @@
             // btnCancel
             // 
             this.btnCancel.Enabled = false;
-            this.btnCancel.Location = new System.Drawing.Point(3, 3);
+            this.btnCancel.Image = ((System.Drawing.Image)(resources.GetObject("btnCancel.Image")));
+            this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCancel.Location = new System.Drawing.Point(0, 3);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 23);
+            this.btnCancel.Size = new System.Drawing.Size(78, 23);
             this.btnCancel.TabIndex = 3;
             this.btnCancel.Text = "取消下载";
+            this.btnCancel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
@@ -262,7 +292,7 @@
             this.btnPause.Name = "btnPause";
             this.btnPause.Size = new System.Drawing.Size(75, 23);
             this.btnPause.TabIndex = 2;
-            this.btnPause.Text = "暂停";
+            this.btnPause.Text = "暂停下载";
             this.btnPause.UseVisualStyleBackColor = true;
             this.btnPause.Click += new System.EventHandler(this.btnPause_Click);
             // 
@@ -277,27 +307,6 @@
             this.pnlFinish.Size = new System.Drawing.Size(409, 30);
             this.pnlFinish.TabIndex = 6;
             this.pnlFinish.Visible = false;
-            // 
-            // lblDOfA
-            // 
-            this.lblDOfA.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblDOfA.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lblDOfA.Location = new System.Drawing.Point(101, 113);
-            this.lblDOfA.Name = "lblDOfA";
-            this.lblDOfA.Size = new System.Drawing.Size(302, 12);
-            this.lblDOfA.TabIndex = 14;
-            this.lblDOfA.Text = "-----";
-            this.lblDOfA.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(6, 113);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(89, 12);
-            this.label8.TabIndex = 13;
-            this.label8.Text = "已下载/总大小:";
             // 
             // SingleDownloadForm
             // 

@@ -23,6 +23,7 @@ namespace TurboEngine.Core
         public long FileLength { get; set; }
         public string FilePath { get; set; }
         public string FileName { get; set; }
+        public string FullFileName => Path.Combine(FilePath, FileName);
         public EngineState State { get; private set; } = EngineState.Stopped;
         public long DownloadedSize { get { return stateMonitor.DownloadSize; } }
         public double Rate { get { return stateMonitor.Rate > 1 ? 1 : stateMonitor.Rate; } }
@@ -70,7 +71,7 @@ namespace TurboEngine.Core
         {
             if (State == EngineState.Running)
             {
-                Task.Run(new Action(() =>
+                new Thread(() =>
                 {
                     SetState(EngineState.Stopping);
                     requestedStopping = true;
@@ -78,14 +79,14 @@ namespace TurboEngine.Core
                     cacheManager.Pause();
                     Task.WaitAll(tasks.ToArray());
                     SetState(EngineState.Stopped);
-                }));
+                }).Start();
             }
         }
         public void Stop()
         {
             if (State == EngineState.Running || State == EngineState.Error)
             {
-                Task.Run(new Action(() =>
+                new Thread(() =>
                 {
                     SetState(EngineState.Stopping);
                     requestedStopping = true;
@@ -93,7 +94,7 @@ namespace TurboEngine.Core
                     cacheManager.Cancel();
                     Task.WaitAll(tasks.ToArray());
                     SetState(EngineState.Stopped);
-                }));
+                }).Start();
                 
             }
         }
