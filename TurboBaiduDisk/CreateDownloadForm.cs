@@ -49,7 +49,7 @@ namespace TurboBaiduDisk
             }
             if (dresult.urls[0].url.Contains("wenxintishi"))
             {
-                lblNoticeBan.Visible = true;
+                MessageBox.Show("此文件已被封禁! :)");
                 return;
             }
             foreach (Url url in dresult.urls)

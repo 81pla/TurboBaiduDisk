@@ -38,10 +38,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txtRemotePath = new MetroFramework.Controls.MetroTextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnDownload = new MetroFramework.Controls.MetroButton();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.txtList = new MetroFramework.Controls.MetroTextBox();
-            this.lblNoticeBan = new System.Windows.Forms.Label();
             this.btnCancel = new MetroFramework.Controls.MetroButton();
             this.btnDownloadNow = new MetroFramework.Controls.MetroButton();
             this.btnShowLinks = new MetroFramework.Controls.MetroButton();
@@ -184,19 +182,6 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "文件路径:";
             // 
-            // btnDownload
-            // 
-            this.btnDownload.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDownload.Enabled = false;
-            this.btnDownload.Location = new System.Drawing.Point(452, 176);
-            this.btnDownload.Name = "btnDownload";
-            this.btnDownload.Size = new System.Drawing.Size(94, 23);
-            this.btnDownload.TabIndex = 1;
-            this.btnDownload.Text = "加入下载列表";
-            this.btnDownload.UseSelectable = true;
-            this.btnDownload.UseVisualStyleBackColor = true;
-            this.btnDownload.Click += new System.EventHandler(this.btnDownload_Click);
-            // 
             // groupBox2
             // 
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -231,22 +216,10 @@
             this.txtList.UseSelectable = true;
             this.txtList.WordWrap = false;
             // 
-            // lblNoticeBan
-            // 
-            this.lblNoticeBan.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblNoticeBan.AutoSize = true;
-            this.lblNoticeBan.ForeColor = System.Drawing.Color.Red;
-            this.lblNoticeBan.Location = new System.Drawing.Point(12, 181);
-            this.lblNoticeBan.Name = "lblNoticeBan";
-            this.lblNoticeBan.Size = new System.Drawing.Size(107, 12);
-            this.lblNoticeBan.TabIndex = 3;
-            this.lblNoticeBan.Text = "该文件已被封禁 :)";
-            this.lblNoticeBan.Visible = false;
-            // 
             // btnCancel
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCancel.Location = new System.Drawing.Point(290, 176);
+            this.btnCancel.Location = new System.Drawing.Point(389, 176);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.TabIndex = 4;
             this.btnCancel.Text = "取消";
@@ -258,7 +231,7 @@
             // 
             this.btnDownloadNow.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnDownloadNow.Enabled = false;
-            this.btnDownloadNow.Location = new System.Drawing.Point(371, 176);
+            this.btnDownloadNow.Location = new System.Drawing.Point(470, 176);
             this.btnDownloadNow.Name = "btnDownloadNow";
             this.btnDownloadNow.TabIndex = 5;
             this.btnDownloadNow.Text = "下载";
@@ -269,7 +242,7 @@
             // btnShowLinks
             // 
             this.btnShowLinks.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnShowLinks.Location = new System.Drawing.Point(185, 176);
+            this.btnShowLinks.Location = new System.Drawing.Point(284, 176);
             this.btnShowLinks.Name = "btnShowLinks";
             this.btnShowLinks.Size = new System.Drawing.Size(99, 23);
             this.btnShowLinks.TabIndex = 6;
@@ -286,9 +259,7 @@
             this.Controls.Add(this.btnShowLinks);
             this.Controls.Add(this.btnDownloadNow);
             this.Controls.Add(this.btnCancel);
-            this.Controls.Add(this.lblNoticeBan);
             this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.btnDownload);
             this.Controls.Add(this.groupBox1);
             this.Name = "CreateDownloadForm";
             this.ShadowType = MetroFramework.Forms.MetroFormShadowType.SystemShadow;
@@ -299,7 +270,6 @@
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -315,10 +285,8 @@
         private MetroFramework.Controls.MetroTextBox txtSize;
         private System.Windows.Forms.Label label3;
         private MetroFramework.Controls.MetroTextBox txtFilename;
-        private MetroFramework.Controls.MetroButton btnDownload;
         private System.Windows.Forms.GroupBox groupBox2;
         private MetroFramework.Controls.MetroTextBox txtList;
-        private System.Windows.Forms.Label lblNoticeBan;
         private MetroFramework.Controls.MetroButton btnCancel;
         private MetroFramework.Controls.MetroButton btnDownloadNow;
         private MetroFramework.Controls.MetroButton btnShowLinks;

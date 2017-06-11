@@ -11,6 +11,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -43,27 +44,21 @@ namespace TurboBaiduDisk
 
         private void MainForm_Shown(object sender, EventArgs e)
         {
-            Task.Run(new Action(Init));
+            new Thread(Init).Start();
         }
         private void Init()
         {
-            metroProgressSpinner1.Visible = true;
+            this.Invoke(new Action(() => { metroProgressSpinner1.Visible = true; }));
             UserInfoResult uinfo = client.GetUserInfo();
             QuotaResult quota = client.GetQuota();
             lblUserName.Text = uinfo.records[0].uname;
             pictureBox1.Image = Image.FromStream(WebRequest.Create(uinfo.records[0].avatar_url).GetResponse().GetResponseStream());
-            label2.Text = $"\t{(double)quota.used / 1024 / 1024 / 1024:#.##}GB/{(double)quota.total / 1024 / 1024 / 1024:#.##}GB";
-            metroProgressSpinner1.Visible = false;
-            RefreshPath("/", true);
-        }
-        private void SetStateText(string message)
-        {
-            //statusStrip1.Items[0].Text = message;
-        }
-        private void MainForm_Load(object sender, EventArgs e)
-        {
+            lblQuota.Text = $"\t{(double)quota.used / 1024 / 1024 / 1024:#.##}GB/{(double)quota.total / 1024 / 1024 / 1024:#.##}GB";
 
+            RefreshPath("/");
+            metroProgressSpinner1.Visible = false;
         }
+
         public static DateTime TimeStamp2DateTime(string timeStamp)
         {
             DateTime dateTimeStart = TimeZone.CurrentTimeZone.ToLocalTime(new DateTime(1970, 1, 1));
@@ -71,14 +66,12 @@ namespace TurboBaiduDisk
             TimeSpan toNow = new TimeSpan(lTime);
             return dateTimeStart.Add(toNow);
         }
-        private void RefreshPath(string path, bool manual)
+        private void RefreshPath(string path)
         {
             string rpath = (path == "" ? "/" : path);
-            metroProgressSpinner1.Visible = manual ? true : false;
             ListFileResult flst = client.GetFileList(rpath);
             if (flst.list == null)
             {
-                SetStateText($"刷新列表失败. {Errno.Instance.GetDescription(flst.errno)}");
                 return;
             }
             if (flst.list.Length == (rpath == "/" ? listView1.Items.Count : listView1.Items.Count - 1))
@@ -95,19 +88,102 @@ namespace TurboBaiduDisk
             listView1.BeginUpdate();
             listView1.Items.Clear();
             if (rpath != "/")
-                listView1.Items.Add(new ListViewItem("..", "dir"));
+                listView1.Items.Add(new ListViewItem("..", "FolderType"));
             foreach (Item item in flst.list)
             {
                 ListViewItem lvItem = new ListViewItem(item.server_filename);
-
                 if (item.isdir == 1)
                 {
-                    lvItem.ImageKey = "dir";
+                    if (item.server_filename == "apps")
+                        lvItem.ImageKey = "Apps";
+                    else
+                        lvItem.ImageKey = "FolderType";
+
                     lvItem.SubItems.AddRange(new string[] { "", TimeStamp2DateTime(item.server_ctime.ToString()).ToString() });
                 }
                 else
                 {
-                    lvItem.ImageKey = "file";
+                    if (item.server_filename.Contains("."))
+                        switch (item.server_filename.Substring(item.server_filename.LastIndexOf(".")).ToLower())
+                        {
+                            #region TypeSwitch
+                            case ".apk":
+                                lvItem.ImageKey = "ApkType";
+                                break;
+                            case ".cad":
+                                lvItem.ImageKey = "CadType";
+                                break;
+                            case ".doc":
+                            case ".docx":
+                                lvItem.ImageKey = "DocType";
+                                break;
+                            case ".exe":
+                                lvItem.ImageKey = "ExeType";
+                                break;
+                            case ".png":
+                            case ".jpg":
+                            case ".jpeg":
+                            case ".gif":
+                            case ".bmp":
+                            case ".tiff":
+                                lvItem.ImageKey = "ImgType";
+                                break;
+                            case ".ipa":
+                                lvItem.ImageKey = "IpaType";
+                                break;
+                            case ".mp3":
+                            case ".flac":
+                            case ".ogg":
+                            case ".wav":
+                            case ".wma":
+                            case ".aac":
+                            case ".ape":
+                                lvItem.ImageKey = "MusicType";
+                                break;
+                            case ".ppt":
+                            case ".pptx":
+                                lvItem.ImageKey = "PptType";
+                                break;
+                            case ".rar":
+                            case ".zip":
+                            case ".7z":
+                            case ".tar":
+                            case ".gz":
+                                lvItem.ImageKey = "RarType";
+                                break;
+                            case ".torrent":
+                                lvItem.ImageKey = "TorrentType";
+                                break;
+                            case ".txt":
+                                lvItem.ImageKey = "TxtType";
+                                break;
+                            case ".mp4":
+                            case ".avi":
+                            case ".mkv":
+                            case ".rm":
+                            case ".rmvb":
+                            case ".flv":
+                            case ".wmv":
+                            case ".3gp":
+                            case ".mov":
+                                lvItem.ImageKey = "VideoType";
+                                break;
+                            case ".vsd":
+                                lvItem.ImageKey = "VsdType";
+                                break;
+                            case ".xls":
+                            case ".xlsx":
+                            case ".csv":
+                                lvItem.ImageKey = "XlsType";
+                                break;
+                            default:
+                                lvItem.ImageKey = "OtherType";
+                                break;
+                                #endregion
+                        }
+                    else
+                        lvItem.ImageKey = "OtherType";
+
                     lvItem.SubItems.AddRange(new string[] { GetSizeString(item.size), TimeStamp2DateTime(item.server_ctime.ToString()).ToString() });
                 }
                 listView1.Items.Add(lvItem);
@@ -139,12 +215,10 @@ namespace TurboBaiduDisk
         {
             if (listView1.SelectedItems.Count == 0)
             {
-                SetStateText($"{listView1.Items.Count} 项");
                 listView1.ContextMenuStrip = contextMenuStrip2;
             }
             else
             {
-                SetStateText($"已选中{listView1.SelectedItems.Count}个文件/文件夹");
                 listView1.ContextMenuStrip = contextMenuStrip1;
             }
         }
@@ -153,16 +227,23 @@ namespace TurboBaiduDisk
         {
             if (listView1.SelectedItems.Count == 0)
                 return;
-            if (listView1.SelectedItems[0].ImageKey == "dir")
+            if (listView1.SelectedItems[0].ImageKey == "FolderType" || listView1.SelectedItems[0].ImageKey == "Apps")
             {
+                this.Invoke(new Action(() =>{ metroProgressSpinner1.Visible = true;}));
                 if (listView1.SelectedItems[0].Text == "..")
                 {
                     string oPath = textBox1.Text;
-                    RefreshPath(oPath.Remove(oPath.LastIndexOf('/')), true);
+                    Task.Run(new Action(() =>
+                    {
+                        RefreshPath(oPath.Remove(oPath.LastIndexOf('/')));
+                    }));
                 }
                 else
                 {
-                    RefreshPath((textBox1.Text.EndsWith("/") ? textBox1.Text : textBox1.Text + "/") + listView1.SelectedItems[0].Text, true);
+                    Task.Run(new Action(() =>
+                    {
+                        RefreshPath((textBox1.Text.EndsWith("/") ? textBox1.Text : textBox1.Text + "/") + listView1.SelectedItems[0].Text);
+                    }));
                 }
             }
             else
@@ -217,10 +298,11 @@ namespace TurboBaiduDisk
 
         private void pictureBox2_Click(object sender, EventArgs e)
         {
+            metroProgressSpinner1.Visible = true;
             Task.Run(new Action(() =>
             {
                 pictureBox2.Enabled = false;
-                RefreshPath(textBox1.Text, true);
+                RefreshPath(textBox1.Text);
                 pictureBox2.Enabled = true;
             }));
         }
@@ -228,7 +310,7 @@ namespace TurboBaiduDisk
         private void tmrAutoRefresh_Tick(object sender, EventArgs e)
         {
             if (listView1.SelectedItems.Count == 0)
-                RefreshPath(textBox1.Text, false);
+                RefreshPath(textBox1.Text);
         }
         
 
@@ -246,11 +328,6 @@ namespace TurboBaiduDisk
         }
 
         private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
         {
 
         }
@@ -285,6 +362,11 @@ namespace TurboBaiduDisk
 
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
+            if (fileOpCacheList == null)
+                return;
+            if (fileOpCacheList.Length == 0)
+                return;
+
             FileOperationResult result = null;
             List<CopyMoveRequest> requests = new List<CopyMoveRequest>();
             foreach (string p in fileOpCacheList)
@@ -369,14 +451,9 @@ namespace TurboBaiduDisk
 
         }
 
-        private void 重命名ToolStripMenuItem_Click(object sender, EventArgs e)
+        private void MainForm_Load(object sender, EventArgs e)
         {
-            
-        }
 
-        private void linkLabel1_Click(object sender, EventArgs e)
-        {
-            Process.Start("https://github.com/lizhengxiao/TurboBaiduDisk");
         }
     }
 }

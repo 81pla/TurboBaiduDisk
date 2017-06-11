@@ -30,6 +30,7 @@ namespace TurboBaiduDisk
         private void ShareForm_Load(object sender, EventArgs e)
         {
             txtPwd.Text = GetRandomPassword(4);
+            metroProgressSpinner1.Visible = false;
         }
 
         public string GetRandomPassword(int passwordLen)
@@ -61,29 +62,34 @@ namespace TurboBaiduDisk
 
         private void btnShare_Click(object sender, EventArgs e)
         {
-            Client client = new Client();
-            if (checkBox1.Checked)
+            Task.Run(new Action(() =>
             {
-                ShareResult result = client.SharePrivate(path_list, txtPwd.Text);
-                if (result.errno != 0)
+                metroProgressSpinner1.Visible = true;
+                Client client = new Client();
+                if (checkBox1.Checked)
                 {
-                    MessageBox.Show($"{Errno.Instance.GetDescription(result.errno)}. 分享失败.");
-                    return;
+                    ShareResult result = client.SharePrivate(path_list, txtPwd.Text);
+                    if (result.errno != 0)
+                    {
+                        MessageBox.Show($"{Errno.Instance.GetDescription(result.errno)}. 分享失败.");
+                        return;
+                    }
+                    txtShort.Text = result.shorturl;
+                    txtLong.Text = result.link;
                 }
-                txtShort.Text = result.shorturl;
-                txtLong.Text = result.link;
-            }
-            else
-            {
-                ShareResult result = client.Share(path_list);
-                if (result.errno != 0)
+                else
                 {
-                    MessageBox.Show($"{Errno.Instance.GetDescription(result.errno)}. 分享失败.");
-                    return;
+                    ShareResult result = client.Share(path_list);
+                    if (result.errno != 0)
+                    {
+                        MessageBox.Show($"{Errno.Instance.GetDescription(result.errno)}. 分享失败.");
+                        return;
+                    }
+                    txtShort.Text = result.shorturl;
+                    txtLong.Text = result.link;
                 }
-                txtShort.Text = result.shorturl;
-                txtLong.Text = result.link;
-            }
+                metroProgressSpinner1.Visible = false;
+            }));
         }
 
     }

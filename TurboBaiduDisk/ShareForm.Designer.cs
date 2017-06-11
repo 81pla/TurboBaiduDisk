@@ -41,6 +41,7 @@
             this.label3 = new MetroFramework.Controls.MetroLabel();
             this.btnShare = new MetroFramework.Controls.MetroButton();
             this.btnCancel = new MetroFramework.Controls.MetroButton();
+            this.metroProgressSpinner1 = new MetroFramework.Controls.MetroProgressSpinner();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -205,11 +206,23 @@
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
+            // metroProgressSpinner1
+            // 
+            this.metroProgressSpinner1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.metroProgressSpinner1.Location = new System.Drawing.Point(227, 122);
+            this.metroProgressSpinner1.Maximum = 100;
+            this.metroProgressSpinner1.Name = "metroProgressSpinner1";
+            this.metroProgressSpinner1.Size = new System.Drawing.Size(64, 64);
+            this.metroProgressSpinner1.TabIndex = 0;
+            this.metroProgressSpinner1.UseSelectable = true;
+            this.metroProgressSpinner1.Value = 50;
+            // 
             // ShareForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(517, 309);
+            this.Controls.Add(this.metroProgressSpinner1);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnShare);
             this.Controls.Add(this.groupBox2);
@@ -241,5 +254,6 @@
         private MetroFramework.Controls.MetroTextBox txtLong;
         private MetroFramework.Controls.MetroButton btnShare;
         private MetroFramework.Controls.MetroButton btnCancel;
+        private MetroFramework.Controls.MetroProgressSpinner metroProgressSpinner1;
     }
 }

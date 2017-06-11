@@ -32,7 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.panelHeader = new System.Windows.Forms.Panel();
             this.btnSettings = new MetroFramework.Controls.MetroButton();
-            this.label2 = new MetroFramework.Controls.MetroLabel();
+            this.lblQuota = new MetroFramework.Controls.MetroLabel();
             this.lblUserName = new MetroFramework.Controls.MetroLabel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panelMainBody = new System.Windows.Forms.Panel();
@@ -48,7 +48,6 @@
             this.复制ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.剪切ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.重命名ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.删除ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.属性ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imageList2 = new System.Windows.Forms.ImageList(this.components);
@@ -94,7 +93,7 @@
             // 
             this.panelHeader.BackColor = System.Drawing.Color.White;
             this.panelHeader.Controls.Add(this.btnSettings);
-            this.panelHeader.Controls.Add(this.label2);
+            this.panelHeader.Controls.Add(this.lblQuota);
             this.panelHeader.Controls.Add(this.lblUserName);
             this.panelHeader.Controls.Add(this.pictureBox1);
             this.panelHeader.Dock = System.Windows.Forms.DockStyle.Top;
@@ -117,18 +116,17 @@
             this.btnSettings.UseVisualStyleBackColor = false;
             this.btnSettings.Click += new System.EventHandler(this.btnSettings_Click);
             // 
-            // label2
+            // lblQuota
             // 
-            this.label2.AutoSize = true;
-            this.label2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.label2.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(72, 49);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(46, 19);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Quota";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
+            this.lblQuota.AutoSize = true;
+            this.lblQuota.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblQuota.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lblQuota.ForeColor = System.Drawing.Color.Black;
+            this.lblQuota.Location = new System.Drawing.Point(72, 49);
+            this.lblQuota.Name = "lblQuota";
+            this.lblQuota.Size = new System.Drawing.Size(46, 19);
+            this.lblQuota.TabIndex = 2;
+            this.lblQuota.Text = "Quota";
             // 
             // lblUserName
             // 
@@ -215,16 +213,15 @@
             this.复制ToolStripMenuItem,
             this.剪切ToolStripMenuItem,
             this.toolStripSeparator2,
-            this.重命名ToolStripMenuItem,
             this.删除ToolStripMenuItem,
             this.属性ToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(113, 192);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(101, 170);
             // 
             // 打开toolStripMenuItem
             // 
             this.打开toolStripMenuItem.Name = "打开toolStripMenuItem";
-            this.打开toolStripMenuItem.Size = new System.Drawing.Size(112, 22);
+            this.打开toolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.打开toolStripMenuItem.Text = "打开";
             this.打开toolStripMenuItem.Click += new System.EventHandler(this.打开toolStripMenuItem_Click);
             // 
@@ -232,74 +229,100 @@
             // 
             this.下载ToolStripMenuItem.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.下载ToolStripMenuItem.Name = "下载ToolStripMenuItem";
-            this.下载ToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
+            this.下载ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.下载ToolStripMenuItem.Text = "下载";
             this.下载ToolStripMenuItem.Click += new System.EventHandler(this.下载ToolStripMenuItem_Click);
             // 
             // 分享ToolStripMenuItem
             // 
             this.分享ToolStripMenuItem.Name = "分享ToolStripMenuItem";
-            this.分享ToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
+            this.分享ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.分享ToolStripMenuItem.Text = "分享";
             this.分享ToolStripMenuItem.Click += new System.EventHandler(this.分享ToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(109, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(97, 6);
             // 
             // 复制ToolStripMenuItem
             // 
             this.复制ToolStripMenuItem.Name = "复制ToolStripMenuItem";
-            this.复制ToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
+            this.复制ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.复制ToolStripMenuItem.Text = "复制";
             this.复制ToolStripMenuItem.Click += new System.EventHandler(this.复制ToolStripMenuItem_Click);
             // 
             // 剪切ToolStripMenuItem
             // 
             this.剪切ToolStripMenuItem.Name = "剪切ToolStripMenuItem";
-            this.剪切ToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
+            this.剪切ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.剪切ToolStripMenuItem.Text = "剪切";
             this.剪切ToolStripMenuItem.Click += new System.EventHandler(this.剪切ToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(109, 6);
-            // 
-            // 重命名ToolStripMenuItem
-            // 
-            this.重命名ToolStripMenuItem.Name = "重命名ToolStripMenuItem";
-            this.重命名ToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
-            this.重命名ToolStripMenuItem.Text = "重命名";
-            this.重命名ToolStripMenuItem.Click += new System.EventHandler(this.重命名ToolStripMenuItem_Click);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(97, 6);
             // 
             // 删除ToolStripMenuItem
             // 
             this.删除ToolStripMenuItem.Name = "删除ToolStripMenuItem";
-            this.删除ToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
+            this.删除ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.删除ToolStripMenuItem.Text = "删除";
             this.删除ToolStripMenuItem.Click += new System.EventHandler(this.删除ToolStripMenuItem_Click);
             // 
             // 属性ToolStripMenuItem
             // 
             this.属性ToolStripMenuItem.Name = "属性ToolStripMenuItem";
-            this.属性ToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
+            this.属性ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.属性ToolStripMenuItem.Text = "属性";
             // 
             // imageList2
             // 
             this.imageList2.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList2.ImageStream")));
             this.imageList2.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList2.Images.SetKeyName(0, "dir");
-            this.imageList2.Images.SetKeyName(1, "file");
+            this.imageList2.Images.SetKeyName(0, "ApkType");
+            this.imageList2.Images.SetKeyName(1, "Apps");
+            this.imageList2.Images.SetKeyName(2, "CadType");
+            this.imageList2.Images.SetKeyName(3, "DocType");
+            this.imageList2.Images.SetKeyName(4, "ExeType");
+            this.imageList2.Images.SetKeyName(5, "FolderType");
+            this.imageList2.Images.SetKeyName(6, "ImgType");
+            this.imageList2.Images.SetKeyName(7, "IpaType");
+            this.imageList2.Images.SetKeyName(8, "MixFileType");
+            this.imageList2.Images.SetKeyName(9, "MusicType");
+            this.imageList2.Images.SetKeyName(10, "OtherType");
+            this.imageList2.Images.SetKeyName(11, "PdfType");
+            this.imageList2.Images.SetKeyName(12, "PptType");
+            this.imageList2.Images.SetKeyName(13, "RarType");
+            this.imageList2.Images.SetKeyName(14, "TorrentType");
+            this.imageList2.Images.SetKeyName(15, "TxtType");
+            this.imageList2.Images.SetKeyName(16, "VideoType");
+            this.imageList2.Images.SetKeyName(17, "VsdType");
+            this.imageList2.Images.SetKeyName(18, "XlsType");
             // 
             // imageList1
             // 
             this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList1.Images.SetKeyName(0, "dir");
-            this.imageList1.Images.SetKeyName(1, "file");
+            this.imageList1.Images.SetKeyName(0, "ApkType");
+            this.imageList1.Images.SetKeyName(1, "Apps");
+            this.imageList1.Images.SetKeyName(2, "CadType");
+            this.imageList1.Images.SetKeyName(3, "DocType");
+            this.imageList1.Images.SetKeyName(4, "ExeType");
+            this.imageList1.Images.SetKeyName(5, "FolderType");
+            this.imageList1.Images.SetKeyName(6, "ImgType");
+            this.imageList1.Images.SetKeyName(7, "IpaType");
+            this.imageList1.Images.SetKeyName(8, "MusicType");
+            this.imageList1.Images.SetKeyName(9, "OtherType");
+            this.imageList1.Images.SetKeyName(10, "PdfType");
+            this.imageList1.Images.SetKeyName(11, "PptType");
+            this.imageList1.Images.SetKeyName(12, "RarType");
+            this.imageList1.Images.SetKeyName(13, "TorrentType");
+            this.imageList1.Images.SetKeyName(14, "TxtType");
+            this.imageList1.Images.SetKeyName(15, "VideoType");
+            this.imageList1.Images.SetKeyName(16, "VsdType");
+            this.imageList1.Images.SetKeyName(17, "XlsType");
             // 
             // panelNavigateBar
             // 
@@ -518,6 +541,7 @@
             this.metroProgressSpinner1.Text = "Loading";
             this.metroProgressSpinner1.UseSelectable = true;
             this.metroProgressSpinner1.Value = 50;
+            this.metroProgressSpinner1.Visible = false;
             // 
             // MainForm
             // 
@@ -549,7 +573,6 @@
         #endregion
 
         private System.Windows.Forms.Panel panelHeader;
-        private MetroFramework.Controls.MetroLabel label2;
         private MetroFramework.Controls.MetroLabel lblUserName;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Panel panelMainBody;
@@ -567,7 +590,6 @@
         private System.Windows.Forms.ToolStripMenuItem 复制ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 剪切ToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
-        private System.Windows.Forms.ToolStripMenuItem 重命名ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 删除ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 属性ToolStripMenuItem;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip2;
@@ -598,5 +620,6 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private MetroFramework.Controls.MetroTextBox textBox1;
         private MetroFramework.Controls.MetroProgressSpinner metroProgressSpinner1;
+        private MetroFramework.Controls.MetroLabel lblQuota;
     }
 }
