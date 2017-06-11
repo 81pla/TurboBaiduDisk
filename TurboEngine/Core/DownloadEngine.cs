@@ -140,8 +140,10 @@ namespace TurboEngine.Core
             }
             catch (Exception)
             {
-                throw;
+                filename = null;
+                filelength = 0;   
             }
+
         }
 
         #endregion

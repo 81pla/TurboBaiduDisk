@@ -18,6 +18,7 @@ namespace TurboBaiduDisk
     {
         DownloadEngine engine;
         Task uiTask;
+        bool autoClose = false;
         public SingleDownloadForm(List<string> mirrors)
         {
             InitializeComponent();
@@ -27,6 +28,16 @@ namespace TurboBaiduDisk
             lblSaveTo.Text = Program.Config.DefaultDownloadPath;
         }
 
+        public SingleDownloadForm(List<string> mirrors, string downloadPath)
+            : this(mirrors)
+        {
+            engine.FilePath = downloadPath;
+        }
+        public SingleDownloadForm(List<string> mirrors, string downloadPath, bool autoClose)
+            : this(mirrors, downloadPath)
+        {
+            this.autoClose = autoClose;
+        }
         private void Engine_DownloadError(string obj)
         {
             MessageBox.Show(obj, "下载错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -96,6 +107,8 @@ namespace TurboBaiduDisk
                             pnlFinish.Visible = true;
                             pnlRunning.Visible = false;
                         }));
+                        if (autoClose || Program.Config.AutoClose)
+                            Close();
                         break;
                 }
             }
@@ -132,6 +145,11 @@ namespace TurboBaiduDisk
         private void SingleDownloadForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             engine.Stop();
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            Program.Config.AutoClose = checkBox1.Checked;
         }
     }
 }

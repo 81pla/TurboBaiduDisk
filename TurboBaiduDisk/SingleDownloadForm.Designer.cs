@@ -50,6 +50,7 @@
             this.btnCancel = new MetroFramework.Controls.MetroButton();
             this.btnPause = new MetroFramework.Controls.MetroButton();
             this.pnlFinish = new System.Windows.Forms.Panel();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.pnlRunning.SuspendLayout();
             this.pnlFinish.SuspendLayout();
@@ -77,7 +78,7 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(12, 63);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(409, 224);
+            this.groupBox1.Size = new System.Drawing.Size(409, 230);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             // 
@@ -175,7 +176,7 @@
             // 
             this.progressBar1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.progressBar1.Location = new System.Drawing.Point(6, 195);
+            this.progressBar1.Location = new System.Drawing.Point(6, 201);
             this.progressBar1.Maximum = 1000;
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(397, 23);
@@ -256,7 +257,7 @@
             this.pnlRunning.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlRunning.Controls.Add(this.btnCancel);
             this.pnlRunning.Controls.Add(this.btnPause);
-            this.pnlRunning.Location = new System.Drawing.Point(257, 293);
+            this.pnlRunning.Location = new System.Drawing.Point(257, 321);
             this.pnlRunning.Name = "pnlRunning";
             this.pnlRunning.Size = new System.Drawing.Size(164, 30);
             this.pnlRunning.TabIndex = 5;
@@ -291,17 +292,29 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlFinish.Controls.Add(this.btnOpenDir);
             this.pnlFinish.Controls.Add(this.btnFinish);
-            this.pnlFinish.Location = new System.Drawing.Point(12, 293);
+            this.pnlFinish.Location = new System.Drawing.Point(12, 321);
             this.pnlFinish.Name = "pnlFinish";
             this.pnlFinish.Size = new System.Drawing.Size(409, 30);
             this.pnlFinish.TabIndex = 6;
             this.pnlFinish.Visible = false;
             // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(12, 299);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(84, 16);
+            this.checkBox1.TabIndex = 15;
+            this.checkBox1.Text = "完成后退出";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
             // SingleDownloadForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(433, 328);
+            this.ClientSize = new System.Drawing.Size(433, 356);
+            this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.pnlRunning);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.pnlFinish);
@@ -315,6 +328,7 @@
             this.pnlRunning.ResumeLayout(false);
             this.pnlFinish.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -341,5 +355,6 @@
         private MetroFramework.Controls.MetroLabel label7;
         private MetroFramework.Controls.MetroLabel lblDOfA;
         private MetroFramework.Controls.MetroLabel label8;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }

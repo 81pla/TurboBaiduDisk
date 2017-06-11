@@ -27,5 +27,6 @@ namespace TurboBaiduDisk
 
         public string DefaultDownloadPath { get; set; } = Environment.CurrentDirectory;
         public ClientCredential SavedCredential { get; set; }
+        public bool AutoClose { get; set; } = false;
     }
 }

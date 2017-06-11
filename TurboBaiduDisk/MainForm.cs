@@ -318,7 +318,10 @@ namespace TurboBaiduDisk
         {
             foreach (ListViewItem item in listView1.SelectedItems)
             {
-                new CreateDownloadForm(Path.Combine(textBox1.Text,item.Text).Replace('\\','/'), item.Text, item.SubItems[1].Text).Show();
+                if (item.ImageKey == "FolderType")
+                    new FolderDownloadForm(Path.Combine(textBox1.Text, item.Text).Replace('\\', '/')).Show();
+                else
+                    new CreateDownloadForm(Path.Combine(textBox1.Text,item.Text).Replace('\\','/'), item.Text, item.SubItems[1].Text).Show();
             }
         }
 

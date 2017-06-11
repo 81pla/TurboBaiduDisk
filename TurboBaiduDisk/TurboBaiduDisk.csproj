@@ -96,6 +96,12 @@
     <Compile Include="SingleDownloadForm.Designer.cs">
       <DependentUpon>SingleDownloadForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="FolderDownloadForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FolderDownloadForm.Designer.cs">
+      <DependentUpon>FolderDownloadForm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="CreateDownloadForm.resx">
       <DependentUpon>CreateDownloadForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -117,6 +123,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SingleDownloadForm.resx">
       <DependentUpon>SingleDownloadForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FolderDownloadForm.resx">
+      <DependentUpon>FolderDownloadForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
     <None Include="packages.config" />
