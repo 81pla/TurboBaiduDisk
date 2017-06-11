@@ -5,7 +5,7 @@ Download files from baidu-netdisk with speed it should be. It can work with full
 * C#
 * .NET Framework 4.6.1
 ## Modules
-* TurboBaiduDisk - A winform Client with ugly UI.
+* TurboBaiduDisk - A winform Client(use [ModernUI](https://github.com/peters/winforms-modernui))
 * APIClient - A baidu-netdisk private API library.
 * TurboEngine - Core engine for fast downloading.
 ## Help To Improve
