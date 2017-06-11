@@ -23,7 +23,6 @@ namespace TurboBaiduDisk
         {
             InitializeComponent();
             engine = new DownloadEngine(mirrors);
-            engine.FilePath = Program.Config.DefaultDownloadPath;
             engine.DownloadError += Engine_DownloadError;
             lblSaveTo.Text = Program.Config.DefaultDownloadPath;
         }
@@ -68,7 +67,8 @@ namespace TurboBaiduDisk
         {
             try
             {
-                engine.FilePath = Program.Config.DefaultDownloadPath;
+                if (engine.FilePath == null)
+                    engine.FilePath = Program.Config.DefaultDownloadPath;
                 engine.Start();
 
                 lblProgress.Text = "Connecting...";
