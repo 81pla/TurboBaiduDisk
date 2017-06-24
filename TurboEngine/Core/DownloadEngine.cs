@@ -40,10 +40,9 @@ namespace TurboEngine.Core
         private List<Task> tasks = new List<Task>();
         private int workersRunning = 0;
         private bool isLoaded => FileLength != 0 && FileName != null;
-
-        const int WorkersPerMirror = 3;
-        const int MaxWorkers = 32;
-        const int MinWorkers = 8;
+        
+        public int MaxWorkers { get; set; } = 32;
+        public int MinWorkers { get; set; } = 16;
         #endregion
 
         #region Public methods
@@ -153,7 +152,7 @@ namespace TurboEngine.Core
         {
             try
             {
-                ServicePointManager.DefaultConnectionLimit = 100;
+                ServicePointManager.DefaultConnectionLimit = 1000;
 
                 chunkManager = new ChunkManager(FileLength, Path.Combine(FilePath, FileName) + ".tep");
                 cacheManager = new CacheManager(Path.Combine(FilePath, FileName));

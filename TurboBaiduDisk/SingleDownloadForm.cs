@@ -61,6 +61,8 @@ namespace TurboBaiduDisk
         }
         private void StartDownlaod()
         {
+            engine.MinWorkers = (int)(Program.Config.MaxSpeed / (256 * 1024));
+            engine.MaxWorkers = engine.MinWorkers * 2;
             uiTask = Task.Run(new Action(StatePolling));
         }
         private void StatePolling()
