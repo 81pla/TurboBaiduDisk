@@ -98,9 +98,14 @@ namespace TurboEngine.Core
         }
         public void LoadBasicInfo()
         {
+            int reload = 0;
+            reload:
+            reload++;
+            if (reload > 3)
+                throw new Exception("下载失败。GET 失败。");
             if (isLoaded)
                 return;
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Mirrors[2]);
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Mirrors[0]);
             try
             {
                 HttpWebResponse response = (HttpWebResponse)request.GetResponse();
@@ -117,11 +122,16 @@ namespace TurboEngine.Core
             }
             catch (Exception)
             {
-                throw;
+                goto reload;
             }
         }
         public static void LoadBasicInfo(string url, out string filename, out long filelength)
         {
+            int reload = 0;
+            reload:
+            reload++;
+            if (reload > 3)
+                throw new Exception("下载失败。GET 失败。");
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
             try
             {
@@ -139,8 +149,7 @@ namespace TurboEngine.Core
             }
             catch (Exception)
             {
-                filename = null;
-                filelength = 0;   
+                goto reload;
             }
 
         }
