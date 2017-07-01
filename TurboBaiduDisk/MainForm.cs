@@ -456,7 +456,7 @@ namespace TurboBaiduDisk
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-
+            label1.Text = "v" + Application.ProductVersion;
         }
     }
 }

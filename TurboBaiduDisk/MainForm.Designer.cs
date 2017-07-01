@@ -79,6 +79,7 @@
             this.退出ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tmrAutoRefresh = new System.Windows.Forms.Timer(this.components);
             this.metroProgressSpinner1 = new MetroFramework.Controls.MetroProgressSpinner();
+            this.label1 = new System.Windows.Forms.Label();
             this.panelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panelMainBody.SuspendLayout();
@@ -543,11 +544,21 @@
             this.metroProgressSpinner1.Value = 50;
             this.metroProgressSpinner1.Visible = false;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(188, 34);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 12);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "v0.6c";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(746, 456);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.metroProgressSpinner1);
             this.Controls.Add(this.panelMainBody);
             this.Controls.Add(this.panelHeader);
@@ -567,6 +578,7 @@
             this.contextMenuStrip2.ResumeLayout(false);
             this.contextMenuStrip3.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -621,5 +633,6 @@
         private MetroFramework.Controls.MetroTextBox textBox1;
         private MetroFramework.Controls.MetroProgressSpinner metroProgressSpinner1;
         private MetroFramework.Controls.MetroLabel lblQuota;
+        private System.Windows.Forms.Label label1;
     }
 }
