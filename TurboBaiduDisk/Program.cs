@@ -30,7 +30,8 @@ namespace TurboBaiduDisk
 
             Config = GlobalConfig.Load();
 
-            Task.Run(new Action(StartSpeedTest));
+            if (Config.MaxSpeed == 0)
+                new AskForBandwidthForm().ShowDialog();
 
             if(Config.SavedCredential != null)
             {
@@ -51,28 +52,7 @@ namespace TurboBaiduDisk
                 Run();
             }
         }
-
-        static void StartSpeedTest()
-        {
-            if (Config.MaxSpeed != 0 && (DateTime.Now - Config.LastSpeedTest).Days > 3)
-                return;
-
-            HttpWebRequest r = WebRequest.CreateHttp("http://dldir1.qq.com/qqfile/qq/QQ8.9.3/21159/QQ8.9.3.exe");
-            HttpWebResponse rp = (HttpWebResponse)r.GetResponse();
-            Stream rpStream = rp.GetResponseStream();
-            Stopwatch sw = Stopwatch.StartNew();
-            byte[] buffer = new byte[1024 * 8];
-            int read = 0;
-            long totalRead = 0;
-            while ((read = rpStream.Read(buffer, 0, buffer.Length)) > 0)
-                totalRead += read;
-            rpStream.Close();
-            r.Abort();
-
-            Config.MaxSpeed = (long)(rp.ContentLength / (sw.Elapsed.TotalMilliseconds / (double)1000));
-            Config.LastSpeedTest = DateTime.Now;
-            Config.Save();
-        }
+        
 
         private static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {

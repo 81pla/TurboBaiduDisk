@@ -69,6 +69,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AskForBandwidthForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AskForBandwidthForm.Designer.cs">
+      <DependentUpon>AskForBandwidthForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="CreateDownloadForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -102,6 +108,9 @@
     <Compile Include="FolderDownloadForm.Designer.cs">
       <DependentUpon>FolderDownloadForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AskForBandwidthForm.resx">
+      <DependentUpon>AskForBandwidthForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CreateDownloadForm.resx">
       <DependentUpon>CreateDownloadForm.cs</DependentUpon>
     </EmbeddedResource>

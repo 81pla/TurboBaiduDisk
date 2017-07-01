@@ -93,7 +93,6 @@ namespace TurboEngine.Core
                     Task.WaitAll(tasks.ToArray());
                     SetState(EngineState.Stopped);
                 }).Start();
-                
             }
         }
         public void LoadBasicInfo()
@@ -118,7 +117,7 @@ namespace TurboEngine.Core
                 if (string.IsNullOrEmpty(fileName))
                     FileName = response.ResponseUri.Segments[response.ResponseUri.Segments.Length - 1];
                 else
-                    FileName = Regex.Match(fileName, "filename=\"(.*)\"").Groups[1].Value;
+                    FileName = Uri.UnescapeDataString(Regex.Match(fileName, "filename=(.*)").Groups[1].Value.Trim('"'));
             }
             catch (Exception)
             {
@@ -207,8 +206,8 @@ namespace TurboEngine.Core
                         HttpWebRequest request = (HttpWebRequest)WebRequest.Create(mirror as string);
                         request.SendChunked = false;
                         request.KeepAlive = false;
-                        request.ReadWriteTimeout = 3000;
-                        request.Timeout = 3000;
+                        request.ReadWriteTimeout = 800;
+                        request.Timeout = 2000;
                         request.AddRange("bytes", chunk.Start, chunk.End);
                         HttpWebResponse response = (HttpWebResponse)request.GetResponse();
                         Stream ws = response.GetResponseStream();

@@ -57,10 +57,7 @@ namespace TurboBaiduDisk
                 mirrors.Add(url.url);
                 txtList.AppendText($"{url.url}\r\n");
             }
-            txtList.AppendText($"Mirrors Count: {mirrors.Count}\r\n");
-            
-            //btnDownload.Enabled = true;
-            btnDownloadNow.Enabled = true;
+            txtList.AppendText($"镜像数量: {mirrors.Count}\r\n");
         }
         
         private void btnDownload_Click(object sender, EventArgs e)

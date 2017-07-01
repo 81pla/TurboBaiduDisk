@@ -62,7 +62,7 @@ namespace TurboBaiduDisk
         private void StartDownlaod()
         {
             engine.MinWorkers = (int)(Program.Config.MaxSpeed / (256 * 1024));
-            engine.MaxWorkers = engine.MinWorkers * 2;
+            engine.MaxWorkers = engine.MinWorkers * 3;
             uiTask = Task.Run(new Action(StatePolling));
         }
         private void StatePolling()
@@ -73,7 +73,7 @@ namespace TurboBaiduDisk
                     engine.FilePath = Program.Config.DefaultDownloadPath;
                 engine.Start();
 
-                lblProgress.Text = "Connecting...";
+                lblProgress.Text = "连接中...";
 
                 while (engine.State != EngineState.Running)
                     ;
@@ -99,11 +99,16 @@ namespace TurboBaiduDisk
                 switch (engine.State)
                 {
                     case EngineState.Stopped:
-                        lblProgress.Text = $"Stopped.";
+                        lblProgress.Text = $"已停止";
                         Close();
                         break;
                     case EngineState.Finished:
-                        lblProgress.Text = $"Finished.";
+                        lblProgress.Text = $"已完成";
+                        lblSpeed.Text = "";
+                        lblRunningThreads.Text = "";
+                        lblDOfA.Text = "";
+                        lblTimeRemaining.Text = "";
+                        progressBar1.Value = progressBar1.Maximum;
                         this.Invoke(new Action(() =>
                         {
                             pnlFinish.Visible = true;

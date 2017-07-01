@@ -230,7 +230,6 @@
             // btnDownloadNow
             // 
             this.btnDownloadNow.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDownloadNow.Enabled = false;
             this.btnDownloadNow.Location = new System.Drawing.Point(470, 176);
             this.btnDownloadNow.Name = "btnDownloadNow";
             this.btnDownloadNow.TabIndex = 5;

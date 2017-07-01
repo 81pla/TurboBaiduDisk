@@ -55,10 +55,12 @@ namespace TurboEngine.Core
             lock (locker)
             {
                 giveupChunksList.Add(chunk.Start);
+
                 if (giveupMirrorsCount.ContainsKey(mirror))
                     giveupMirrorsCount[mirror]++;
                 else
                     giveupMirrorsCount.Add(mirror, 1);
+
                 if (giveupMirrorsCount[mirror] >= 3)
                     return true;
                 else
