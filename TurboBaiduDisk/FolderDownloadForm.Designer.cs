@@ -36,6 +36,7 @@
             this.label2 = new MetroFramework.Controls.MetroLabel();
             this.label3 = new MetroFramework.Controls.MetroLabel();
             this.textBox1 = new MetroFramework.Controls.MetroTextBox();
+            this.button3 = new MetroFramework.Controls.MetroButton();
             this.SuspendLayout();
             // 
             // button1
@@ -125,15 +126,26 @@
             this.textBox1.ReadOnly = true;
             this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.textBox1.SelectedText = "";
-            this.textBox1.Size = new System.Drawing.Size(310, 21);
+            this.textBox1.Size = new System.Drawing.Size(230, 21);
             this.textBox1.TabIndex = 7;
             this.textBox1.UseSelectable = true;
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(328, 79);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 8;
+            this.button3.Text = "选择";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // FolderDownloadForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(415, 245);
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -161,5 +173,6 @@
         private MetroFramework.Controls.MetroLabel label2;
         private MetroFramework.Controls.MetroLabel label3;
         private MetroFramework.Controls.MetroTextBox textBox1;
+        private MetroFramework.Controls.MetroButton button3;
     }
 }

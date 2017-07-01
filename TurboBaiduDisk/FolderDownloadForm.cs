@@ -78,5 +78,16 @@ namespace TurboBaiduDisk
             stopFlag = true;
             Close();
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog dlg = new FolderBrowserDialog();
+            dlg.Description = "选择下载位置";
+            dlg.SelectedPath = Environment.CurrentDirectory;
+            dlg.ShowDialog();
+            textBox1.Text = dlg.SelectedPath;
+            Program.Config.DefaultDownloadPath = dlg.SelectedPath;
+            Program.Config.Save();
+        }
     }
 }
